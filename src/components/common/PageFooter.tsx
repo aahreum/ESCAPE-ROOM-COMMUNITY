@@ -2,7 +2,7 @@ import { styled } from "styled-components"
 import { ReactComponent as GithubIcon } from "../../assets/github.svg"
 import { ReactComponent as TistoryIcon } from "../../assets/tistory.svg"
 
-const PageFooter = () => {
+const PageFooter = (): JSX.Element => {
   return (
     <Footer>
       <Text>개인프로젝트 - 방탈출 커뮤니티</Text>

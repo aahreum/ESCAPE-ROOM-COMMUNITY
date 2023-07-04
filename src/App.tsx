@@ -1,14 +1,18 @@
 import { styled } from "styled-components"
 import GlobalStyles from "./styles/globalStyle"
 import PageFooter from "./components/common/PageFooter"
+import { BrowserRouter } from "react-router-dom"
+import PageNavigator from "./router/PageNavigator"
 
-const App = () => {
+const App = (): JSX.Element => {
   return (
-    <>
+    <BrowserRouter>
       <GlobalStyles />
-      <Wrap></Wrap>
+      <Wrap>
+        <PageNavigator />
+      </Wrap>
       <PageFooter />
-    </>
+    </BrowserRouter>
   )
 }
 

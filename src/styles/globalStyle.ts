@@ -65,14 +65,13 @@ const GlobalStyles = createGlobalStyle`
   }
 
   * {
-    box-sizing: boredr-box;
-    margin: 0;
-    padding: 0;
+    box-sizing: border-box;
   }
 
   body {
     font-family: 'SUIT', sans-serif;
     background-color: var(--color-gray-800);
+    color: var(--color-white);
   }
 
   a {
