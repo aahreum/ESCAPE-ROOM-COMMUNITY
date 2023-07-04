@@ -1,18 +1,19 @@
 import { styled } from "styled-components"
 import GlobalStyles from "./styles/globalStyle"
+import PageFooter from "./components/common/PageFooter"
 
 const App = () => {
   return (
     <>
       <GlobalStyles />
-      <Wrap>App 아아아아아 아아아ㅏ 아아아아</Wrap>
+      <Wrap></Wrap>
+      <PageFooter />
     </>
   )
 }
 
 const Wrap = styled.div`
-  font-family: SUIT, sans-serif;
-  color: var(--color-primary-500);
+  min-height: calc(100vh - 200px);
 `
 
 export default App

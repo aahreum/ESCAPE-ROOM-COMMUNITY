@@ -71,6 +71,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
+    font-family: 'SUIT', sans-serif;
     background-color: var(--color-gray-800);
   }
 
