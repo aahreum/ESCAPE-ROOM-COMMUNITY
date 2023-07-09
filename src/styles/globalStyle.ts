@@ -5,6 +5,8 @@ import SUITLightWoff2 from "./fonts/SUIT-Light.woff2"
 import SUITLightWoff from "./fonts/SUIT-Light.woff"
 import SUITRegularWoff2 from "./fonts/SUIT-Regular.woff2"
 import SUITRegularWoff from "./fonts/SUIT-Regular.woff"
+import SUITMediumWoff2 from "./fonts/SUIT-Medium.woff2"
+import SUITMediumWoff from "./fonts/SUIT-Medium.woff"
 import SUITSemiBoldWoff2 from "./fonts/SUIT-SemiBold.woff2"
 import SUITSemiBoldWoff from "./fonts/SUIT-SemiBold.woff"
 import SUITBoldWoff2 from "./fonts/SUIT-Bold.woff2"
@@ -38,6 +40,7 @@ const GlobalStyles = createGlobalStyle`
     url(${SUITLightWoff2}) format('woff2');
     url(${SUITLightWoff}) format('woff');
   }
+
   @font-face {
     font-family: 'SUIT';
     font-style: normal;
@@ -50,11 +53,21 @@ const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: 'SUIT';
     font-style: normal;
+    font-weight: 500;
+    src: local('SUIT Medium'),
+    url(${SUITMediumWoff2}) format('woff2');
+    url(${SUITMediumWoff}) format('woff'),
+  }
+
+  @font-face {
+    font-family: 'SUIT';
+    font-style: normal;
     font-weight: 600;
     src: local('SUIT SemiBold'),
     url(${SUITSemiBoldWoff2}) format('woff2');
     url(${SUITSemiBoldWoff}) format('woff');
   }
+
   @font-face {
     font-family: 'SUIT';
     font-style: normal;
@@ -72,6 +85,10 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'SUIT', sans-serif;
     background-color: var(--color-gray-800);
     color: var(--color-white);
+  }
+
+  button {
+    padding: 0;
   }
 
   a {
