@@ -1,8 +1,9 @@
 import GlobalStyles from "./styles/globalStyle"
 import { styled } from "styled-components"
 import { BrowserRouter } from "react-router-dom"
-import PageNavigator from "./router/PageNavigator"
-import PageNav from "./components/common/PageNav"
+
+import Routers from "./router/Routers"
+import PageNavWithHide from "./router/PageNavWithHide"
 import PageFooter from "./components/common/PageFooter"
 
 const App = (): JSX.Element => {
@@ -10,8 +11,8 @@ const App = (): JSX.Element => {
     <BrowserRouter>
       <GlobalStyles />
       <Wrap>
-        <PageNav />
-        <PageNavigator />
+        <PageNavWithHide />
+        <Routers />
       </Wrap>
       <PageFooter />
     </BrowserRouter>

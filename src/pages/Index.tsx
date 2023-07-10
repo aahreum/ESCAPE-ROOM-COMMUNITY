@@ -1,9 +1,15 @@
+import { styled } from "styled-components"
+
 const Index = (): JSX.Element => {
   return (
-    <>
-      <h1>메인페이지</h1>
-    </>
+    <Wrap>
+      <h2>메인페이지</h2>
+    </Wrap>
   )
 }
+
+const Wrap = styled.div`
+  margin-top: 62px;
+`
 
 export default Index
