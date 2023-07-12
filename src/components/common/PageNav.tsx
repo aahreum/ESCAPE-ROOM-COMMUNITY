@@ -124,6 +124,7 @@ const SearchInput = styled.input`
   padding-left: 16px;
   border-radius: 8px;
   background-color: var(--color-gray-600);
+
   font-size: 16px;
   color: var(--color-white);
   border: none;
@@ -132,7 +133,7 @@ const SearchInput = styled.input`
 
   &::placeholder {
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 100;
     letter-spacing: 0px;
     color: var(--color-gray-200);
   }
@@ -172,7 +173,6 @@ const Search = styled.button`
   background-color: transparent;
 
   font-size: 16px;
-  font-family: SUIT;
   font-weight: 500;
   color: var(--color-white);
 
@@ -200,7 +200,6 @@ const LogoutButton = styled.button`
   background-color: transparent;
 
   font-size: 16px;
-  font-family: SUIT;
   font-weight: 500;
   color: var(--color-white);
 

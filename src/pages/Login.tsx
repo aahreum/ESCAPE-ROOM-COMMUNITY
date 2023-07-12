@@ -218,7 +218,6 @@ const GoogleBtn = styled.button`
   border: none;
   border-radius: 7px;
 
-  font-family: "SUIT", sans-serif;
   font-weight: 500;
   font-size: 16px;
 

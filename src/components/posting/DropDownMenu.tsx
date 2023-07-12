@@ -91,7 +91,7 @@ const SelectedText = styled.p`
   color: var(--color-white);
 
   &.not-selected {
-    font-weight: 300;
+    font-weight: 100;
     color: var(--color-gray-200);
   }
 `

@@ -1,6 +1,8 @@
 import { createGlobalStyle } from "styled-components"
 import reset from "styled-reset"
 
+import SUITThinWoff2 from "./fonts/SUIT-Thin.woff2"
+import SUITThinWoff from "./fonts/SUIT-Thin.woff"
 import SUITLightWoff2 from "./fonts/SUIT-Light.woff2"
 import SUITLightWoff from "./fonts/SUIT-Light.woff"
 import SUITRegularWoff2 from "./fonts/SUIT-Regular.woff2"
@@ -22,6 +24,7 @@ const GlobalStyles = createGlobalStyle`
     --color-gray-200: #C5C9CE;
     --color-gray-300: #7E7E7E;
     --color-gray-600: #313131;
+    --color-gray-700: #272727;
     --color-gray-800: #1C1D1E;
     --color-gray-900: #111112;
     --color-positive-500: #009027;
@@ -32,6 +35,15 @@ const GlobalStyles = createGlobalStyle`
   }
 
   // 폰트
+  @font-face {
+    font-family: 'SUIT';
+    font-style: normal;
+    font-weight: 100;
+    src: local('SUIT Thin'),
+    url(${SUITThinWoff2}) format('woff2');
+    url(${SUITThinWoff}) format('woff');
+  }
+
   @font-face {
     font-family: 'SUIT';
     font-style: normal;
@@ -79,10 +91,11 @@ const GlobalStyles = createGlobalStyle`
 
   * {
     box-sizing: border-box;
+    font-family: "SUIT", sans-serif;
   }
 
   body {
-    font-family: 'SUIT', sans-serif;
+    font-family: "SUIT", sans-serif;
     background-color: var(--color-gray-800);
     color: var(--color-white);
   }

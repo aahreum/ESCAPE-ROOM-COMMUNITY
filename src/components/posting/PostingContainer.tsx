@@ -6,7 +6,7 @@ const PostingContainer = ({ children }: { children: ReactNode }): JSX.Element =>
 }
 
 const PostingContainerEl = styled.div`
-  margin: 60px auto 80px;
+  margin: 60px auto 40px;
   max-width: 1048px;
   padding: 0 24px;
 `

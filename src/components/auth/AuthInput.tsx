@@ -47,7 +47,7 @@ const InputEl = styled.input`
 
   &::placeholder {
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 100;
     letter-spacing: 0px;
     color: var(--color-gray-200);
   }

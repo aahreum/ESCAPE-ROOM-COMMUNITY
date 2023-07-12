@@ -5,9 +5,11 @@ import { ESCAPE_STATUS, NUMBER_OF_PEOPLE, RECRUITMENT_STATUS } from "../constant
 import PostingContainer from "../components/posting/PostingContainer"
 import { useLocation } from "react-router-dom"
 import TextEditor from "../components/posting/TextEditor"
+import { useState } from "react"
 
 const Write = (): JSX.Element => {
   const { pathname } = useLocation()
+  const [content, setContent] = useState("")
 
   const mate = "/mate/write"
   const review = "/review/write"
@@ -38,9 +40,8 @@ const Write = (): JSX.Element => {
             </>
           )}
         </DropDownMenuContainer>
-
         <TitleInput type="text" placeholder="제목을 입력해주세요" />
-        <TextEditor />
+        <TextEditor content={setContent} />
         <TextSaveButton type="submit">작성완료</TextSaveButton>
       </TextEditContainer>
     </PostingContainer>
@@ -64,6 +65,7 @@ const TitleInput = styled.input`
 
   padding-left: 16px;
   background-color: var(--color-gray-600);
+
   font-size: 16px;
   color: var(--color-white);
 
@@ -72,7 +74,7 @@ const TitleInput = styled.input`
 
   &::placeholder {
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 100;
     letter-spacing: 0px;
     color: var(--color-gray-200);
   }
@@ -86,7 +88,6 @@ const TextSaveButton = styled.button`
   border-radius: 8px;
   background-color: var(--color-primary-500);
 
-  font-family: SUIT, sans-serif;
   font-weight: 600;
   font-size: 16px;
   color: var(--color-gray-800);
