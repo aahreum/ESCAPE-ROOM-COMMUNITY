@@ -1,7 +1,8 @@
+import { ReactNode } from "react"
 import styled from "styled-components"
 
 interface titleProps {
-  children: string
+  children: ReactNode
   $textAlign?: string
 }
 

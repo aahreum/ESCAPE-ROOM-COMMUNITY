@@ -1,6 +1,10 @@
 import { useState } from "react"
+import { useSelector } from "react-redux"
+import { RootState } from "../reducers/rootReducers"
 
 const useAccountState = () => {
+  const isLogin = useSelector((state: RootState) => state.auth.isLogin)
+
   const [isLoginError, setIsLoginError] = useState(false)
 
   const [formState, setFormState] = useState({
@@ -27,6 +31,7 @@ const useAccountState = () => {
     isAvailableNickname: false,
   })
   return {
+    isLogin,
     isLoginError,
     setIsLoginError,
     formState,

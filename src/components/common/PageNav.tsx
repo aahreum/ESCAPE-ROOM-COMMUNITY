@@ -1,15 +1,18 @@
 import { signOut } from "firebase/auth"
 import { auth } from "../../firebase/firebase"
-import useFirebaseAuth from "../../service/useFirebaseAuth"
 import { styled } from "styled-components"
 import { Link } from "react-router-dom"
 import { ReactComponent as LogoIcon } from "../../assets/logo.svg"
 import { BiSearch } from "react-icons/bi"
 import { useState } from "react"
+import { logout } from "../../reducers/authSlice"
+import { useDispatch } from "react-redux"
+import useAccountState from "../../service/useAccountState"
 
 const PageNav = (): JSX.Element => {
-  const { isLogin, setIsLogin } = useFirebaseAuth()
+  const dispatch = useDispatch()
   const [isSearchVisible, setIsSearchVisible] = useState(false)
+  const { isLogin } = useAccountState()
 
   const handleSearch = () => {
     setIsSearchVisible(true)
@@ -22,7 +25,7 @@ const PageNav = (): JSX.Element => {
 
   const handleLogout = async () => {
     await signOut(auth)
-    setIsLogin(false)
+    dispatch(logout())
   }
 
   return (
@@ -35,10 +38,10 @@ const PageNav = (): JSX.Element => {
         </Logo>
         <MenuList>
           <MenuItem>
-            <Link to="/">메이트구하기</Link>
+            <Link to="/mate">메이트구하기</Link>
           </MenuItem>
           <MenuItem>
-            <Link to="/">탈출후기</Link>
+            <Link to="/review">탈출후기</Link>
           </MenuItem>
         </MenuList>
         <SearchContainer>

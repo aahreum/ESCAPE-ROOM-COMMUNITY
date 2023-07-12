@@ -2,8 +2,8 @@ import { useLocation } from "react-router-dom"
 import PageNav from "../components/common/PageNav"
 
 const PageNavWithHide = (): JSX.Element | null => {
-  const location = useLocation()
-  const hidePageNav = location.pathname === "/login" || location.pathname === "/signup"
+  const { pathname } = useLocation()
+  const hidePageNav = pathname === "/login" || pathname === "/signup"
 
   if (hidePageNav) {
     return null

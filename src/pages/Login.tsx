@@ -12,10 +12,12 @@ import Title from "../components/common/Title"
 import AuthInput from "../components/auth/AuthInput"
 import useAccountState from "../service/useAccountState"
 import AuthButton from "../components/auth/AuthButton"
+import { useDispatch } from "react-redux"
+import { login } from "../reducers/authSlice"
 
 const Login = (): JSX.Element => {
   const navigate = useNavigate()
-
+  const dispatch = useDispatch()
   const {
     isLoginError,
     setIsLoginError,
@@ -78,6 +80,8 @@ const Login = (): JSX.Element => {
   const handleUserLogin: userLoginType = async (email, password) => {
     try {
       await loginEmail(email, password)
+      dispatch(login())
+
       setFormState((prev) => ({
         ...prev,
         email: "",
@@ -128,6 +132,7 @@ const Login = (): JSX.Element => {
   const handleUserGoogleLogin = async () => {
     try {
       await signInWithPopup(auth, googleProvider)
+      dispatch(login())
       navigate("/")
     } catch (err) {
       console.error(err + ": Error google login")

@@ -99,6 +99,14 @@ const GlobalStyles = createGlobalStyle`
   ol, ul {
     list-style: none;
   }
+
+  strong {
+    font-weight: bold;
+  }
+
+  em {
+    font-style: italic;
+  }
 `
 
 export default GlobalStyles
