@@ -4,10 +4,11 @@ import ReactQuill from "react-quill"
 import "react-quill/dist/quill.snow.css"
 
 interface TextEditorType {
-  content: Dispatch<SetStateAction<string>>
+  setContent: Dispatch<SetStateAction<string>>
+  content: string
 }
 
-const TextEditor = (props: TextEditorType) => {
+const TextEditor = ({ setContent, content }: TextEditorType) => {
   const modules = {
     toolbar: {
       container: [
@@ -27,7 +28,8 @@ const TextEditor = (props: TextEditorType) => {
       placeholder="내용을 입력해주세요."
       modules={modules}
       theme="snow"
-      onChange={props.content}
+      onChange={setContent}
+      value={content}
     />
   )
 }

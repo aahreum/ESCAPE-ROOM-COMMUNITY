@@ -4,32 +4,51 @@ import { IoIosArrowUp } from "react-icons/io"
 import { useState } from "react"
 
 interface DropDownMenuProps {
-  placeHolder?: string
+  placeHolder: string
   dropDownMenu: string[]
+  name: string
+  selectedPeople?: string
+  setSelectedPeople?: React.Dispatch<React.SetStateAction<string>>
+  seletedState?: string
+  setSelectedState?: React.Dispatch<React.SetStateAction<string>>
 }
 
-const DropDownMenu = ({ ...props }: DropDownMenuProps): JSX.Element => {
+const DropDownMenu = ({
+  placeHolder,
+  dropDownMenu,
+  name,
+  seletedState,
+  setSelectedState,
+  selectedPeople,
+  setSelectedPeople,
+}: DropDownMenuProps): JSX.Element => {
   const [isSelected, setIsSelected] = useState(false)
   const [isOpened, setIsOpened] = useState(false)
-  const [selectedItem, setSelectedItem] = useState("")
 
   const handleOpen = () => {
     setIsOpened((prevIsOpened) => !prevIsOpened)
   }
 
   const handleItem = (item: string) => {
-    setSelectedItem(item)
+    if (name === "인원수") {
+      if (setSelectedPeople) {
+        setSelectedPeople(item)
+      }
+    } else if (name === "탈출여부" || name === "모집여부") {
+      if (setSelectedState) {
+        setSelectedState(item)
+      }
+    }
     setIsSelected(true)
     setIsOpened(false)
   }
 
   const defaultSelected = () => {
-    if (!props.placeHolder) {
-      setIsSelected(true)
-      setSelectedItem(props.dropDownMenu[0])
-      return props.dropDownMenu[0]
+    if (isSelected) {
+      if (name === "모집여부" || name === "탈출여부") return seletedState
+      if (name === "인원수") return selectedPeople
     } else {
-      return props.placeHolder
+      return placeHolder
     }
   }
 
@@ -37,15 +56,14 @@ const DropDownMenu = ({ ...props }: DropDownMenuProps): JSX.Element => {
     <DropDownContainer>
       <DropDown type="button" onClick={handleOpen}>
         <SelectedText className={`${!isSelected && "not-selected"}`}>
-          {isSelected ? selectedItem : defaultSelected()}
+          {defaultSelected()}
         </SelectedText>
         {isOpened ? <IoIosArrowUp /> : <IoIosArrowDown />}
       </DropDown>
       {isOpened && (
         <MenuList>
-          {props.dropDownMenu.map((item: string, index: number) => (
+          {dropDownMenu.map((item: string, index: number) => (
             <MenuItem
-              className={`${selectedItem === item && "selected"}`}
               type="button"
               key={`${index}_${item}`}
               value={item}
@@ -91,7 +109,7 @@ const SelectedText = styled.p`
   color: var(--color-white);
 
   &.not-selected {
-    font-weight: 100;
+    font-weight: 300;
     color: var(--color-gray-200);
   }
 `
@@ -127,10 +145,6 @@ const MenuItem = styled.button`
   &:hover {
     font-weight: 600;
     background-color: rgba(0, 0, 0, 0.2);
-  }
-
-  &.selected {
-    font-weight: 600;
     color: var(--color-primary-500);
   }
 `

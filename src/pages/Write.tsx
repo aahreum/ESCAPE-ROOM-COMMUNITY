@@ -1,20 +1,33 @@
 import { styled } from "styled-components"
 import Title from "../components/common/Title"
 import DropDownMenu from "../components/posting/DropDownMenu"
-import { ESCAPE_STATUS, NUMBER_OF_PEOPLE, RECRUITMENT_STATUS } from "../constants/dropDownMenu"
+import {
+  ESCAPE_STATUS,
+  NUMBER_OF_PEOPLE,
+  PLACEHOLDER,
+  RECRUITMENT_STATUS,
+} from "../constants/dropDownMenu"
 import PostingContainer from "../components/posting/PostingContainer"
 import { useLocation } from "react-router-dom"
 import TextEditor from "../components/posting/TextEditor"
-import { useState } from "react"
+import { ChangeEvent, useEffect, useState } from "react"
+import useTextSaveState from "../service/useTextSaveState"
+import Modal from "../components/common/Modal"
+import { addDoc, collection } from "firebase/firestore"
+import { auth, db } from "../firebase/firebase"
 
 const Write = (): JSX.Element => {
   const { pathname } = useLocation()
-  const [content, setContent] = useState("")
+  const { contentTitle, setContentTitle, content, setContent } = useTextSaveState()
+  const [selectedPeople, setSelectedPeople] = useState("")
+  const [selectedState, setSelectedState] = useState("")
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [contentSave, setContentSave] = useState(false)
 
   const mate = "/mate/write"
   const review = "/review/write"
 
-  const pathTitle = () => {
+  const renderTitle = () => {
     if (pathname === mate) {
       return "메이트 구하기"
     } else if (pathname === review) {
@@ -22,29 +35,121 @@ const Write = (): JSX.Element => {
     }
   }
 
+  const renderDropDwonMenu = () => {
+    if (pathname === mate) {
+      return (
+        <DropDownMenu
+          name="모집여부"
+          seletedState={selectedState}
+          setSelectedState={setSelectedState}
+          placeHolder={PLACEHOLDER.recruitment}
+          dropDownMenu={RECRUITMENT_STATUS}
+        />
+      )
+    } else if (pathname === review) {
+      return (
+        <DropDownMenu
+          name="탈출여부"
+          seletedState={selectedState}
+          setSelectedState={setSelectedState}
+          placeHolder={PLACEHOLDER.escape}
+          dropDownMenu={ESCAPE_STATUS}
+        />
+      )
+    }
+  }
+
+  const data = {
+    title: contentTitle,
+    date: new Date(),
+    content: content,
+    nickname: auth.currentUser?.displayName,
+    people: selectedPeople,
+    state: selectedState,
+  }
+
+  useEffect(() => {
+    if (contentSave) {
+      setContentTitle("")
+      setContent("")
+      setSelectedPeople(PLACEHOLDER.people)
+      setSelectedState(PLACEHOLDER.recruitment)
+      setSelectedState(PLACEHOLDER.escape)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [contentSave])
+
+  const handleSave = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    try {
+      if (
+        content.length === 0 ||
+        contentTitle.length === 0 ||
+        selectedPeople.length === 0 ||
+        selectedState.length === 0
+      ) {
+        setContentSave(false)
+        openModal()
+      } else {
+        if (pathname === mate) {
+          await addDoc(collection(db, "mateContents"), {
+            data,
+          })
+        } else if (pathname === review) {
+          await addDoc(collection(db, "reviewContents"), {
+            data,
+          })
+        }
+        setContentSave(true)
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const openModal = () => {
+    setIsModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+  }
+
   return (
-    <PostingContainer>
-      <Title>{pathTitle()}</Title>
-      <TextEditContainer>
-        <DropDownMenuContainer>
-          {pathname === mate && (
-            <>
-              <DropDownMenu placeHolder="인원수 선택" dropDownMenu={NUMBER_OF_PEOPLE} />
-              <DropDownMenu dropDownMenu={RECRUITMENT_STATUS} />
-            </>
-          )}
-          {pathname === review && (
-            <>
-              <DropDownMenu placeHolder="인원수 선택" dropDownMenu={NUMBER_OF_PEOPLE} />
-              <DropDownMenu placeHolder="탈출여부" dropDownMenu={ESCAPE_STATUS} />
-            </>
-          )}
-        </DropDownMenuContainer>
-        <TitleInput type="text" placeholder="제목을 입력해주세요" />
-        <TextEditor content={setContent} />
-        <TextSaveButton type="submit">작성완료</TextSaveButton>
-      </TextEditContainer>
-    </PostingContainer>
+    <>
+      {isModalOpen && (
+        <Modal
+          closeModal={closeModal}
+          modalTitle="모든 내용을 입력해주세요."
+          modalButtonText="확인"
+        />
+      )}
+      <PostingContainer>
+        <Title>{renderTitle()}</Title>
+        <TextEditContainer>
+          <DropDownMenuContainer>
+            <DropDownMenu
+              name="인원수"
+              selectedPeople={selectedPeople}
+              setSelectedPeople={setSelectedPeople}
+              placeHolder={PLACEHOLDER.people}
+              dropDownMenu={NUMBER_OF_PEOPLE}
+            />
+            {renderDropDwonMenu()}
+          </DropDownMenuContainer>
+          <TitleInput
+            value={contentTitle}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setContentTitle(e.target.value)}
+            type="text"
+            placeholder="제목을 입력해주세요"
+          />
+          <TextEditor content={content} setContent={setContent} />
+          <TextSaveButton onClick={handleSave} type="submit">
+            작성완료
+          </TextSaveButton>
+        </TextEditContainer>
+      </PostingContainer>
+    </>
   )
 }
 
