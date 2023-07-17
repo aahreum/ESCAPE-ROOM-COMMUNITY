@@ -42,7 +42,7 @@ const InputEl = styled.input`
 
   &[type="password"] {
     font-weight: 700;
-    letter-spacing: 1.5px;
+    letter-spacing: -5px;
   }
 
   &::placeholder {

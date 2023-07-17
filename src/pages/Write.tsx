@@ -13,8 +13,9 @@ import TextEditor from "../components/posting/TextEditor"
 import { ChangeEvent, useEffect, useState } from "react"
 import useTextSaveState from "../service/useTextSaveState"
 import Modal from "../components/common/Modal"
-import { addDoc, collection } from "firebase/firestore"
+import { Timestamp, addDoc, collection } from "firebase/firestore"
 import { auth, db } from "../firebase/firebase"
+import { MATE_WRITE, REVIEW_WRITE } from "../constants/postPathname"
 
 const Write = (): JSX.Element => {
   const { pathname } = useLocation()
@@ -24,19 +25,13 @@ const Write = (): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [contentSave, setContentSave] = useState(false)
 
-  const mate = "/mate/write"
-  const review = "/review/write"
-
   const renderTitle = () => {
-    if (pathname === mate) {
-      return "메이트 구하기"
-    } else if (pathname === review) {
-      return "탈출후기"
-    }
+    if (pathname === MATE_WRITE) return "메이트 구하기"
+    else if (pathname === REVIEW_WRITE) return "탈출후기"
   }
 
   const renderDropDwonMenu = () => {
-    if (pathname === mate) {
+    if (pathname === MATE_WRITE) {
       return (
         <DropDownMenu
           name="모집여부"
@@ -46,7 +41,7 @@ const Write = (): JSX.Element => {
           dropDownMenu={RECRUITMENT_STATUS}
         />
       )
-    } else if (pathname === review) {
+    } else if (pathname === REVIEW_WRITE) {
       return (
         <DropDownMenu
           name="탈출여부"
@@ -57,15 +52,6 @@ const Write = (): JSX.Element => {
         />
       )
     }
-  }
-
-  const data = {
-    title: contentTitle,
-    date: new Date(),
-    content: content,
-    nickname: auth.currentUser?.displayName,
-    people: selectedPeople,
-    state: selectedState,
   }
 
   useEffect(() => {
@@ -91,13 +77,23 @@ const Write = (): JSX.Element => {
         setContentSave(false)
         openModal()
       } else {
-        if (pathname === mate) {
+        if (pathname === MATE_WRITE) {
           await addDoc(collection(db, "mateContents"), {
-            data,
+            title: contentTitle,
+            createdTime: Timestamp.fromDate(new Date()),
+            content: content,
+            nickname: auth.currentUser?.displayName,
+            people: selectedPeople,
+            state: selectedState,
           })
-        } else if (pathname === review) {
+        } else if (pathname === REVIEW_WRITE) {
           await addDoc(collection(db, "reviewContents"), {
-            data,
+            title: contentTitle,
+            createdTime: Timestamp.fromDate(new Date()),
+            content: content,
+            nickname: auth.currentUser?.displayName,
+            people: selectedPeople,
+            state: selectedState,
           })
         }
         setContentSave(true)

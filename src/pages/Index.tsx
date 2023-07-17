@@ -1,4 +1,7 @@
+import { collection, doc, getDocs } from "firebase/firestore"
 import { styled } from "styled-components"
+import { db } from "../firebase/firebase"
+import SkeletonCard from "../components/posting/Card/SkeletonCard"
 
 const Index = (): JSX.Element => {
   return (

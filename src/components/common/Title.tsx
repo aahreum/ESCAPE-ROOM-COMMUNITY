@@ -13,6 +13,7 @@ const Title = (props: titleProps) => {
 const TitleEl = styled.h2<titleProps>`
   font-size: 32px;
   font-weight: 600;
+  line-height: 44px;
   text-align: ${(props) => props.$textAlign || "left"};
 `
 

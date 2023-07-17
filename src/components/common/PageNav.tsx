@@ -8,6 +8,7 @@ import { useState } from "react"
 import { logout } from "../../reducers/authSlice"
 import { useDispatch } from "react-redux"
 import useAccountState from "../../service/useAccountState"
+import LinkButton from "./LinkButton"
 
 const PageNav = (): JSX.Element => {
   const dispatch = useDispatch()
@@ -161,6 +162,7 @@ const SearchInputButton = styled.button`
 
 const SearchContainer = styled.div`
   margin-left: auto;
+  margin-right: 24px;
 `
 
 const Search = styled.button`
@@ -183,17 +185,8 @@ const Search = styled.button`
   }
 `
 
-const LinkButton = styled(Link)`
-  margin-left: 28px;
-  padding: 13px 22px;
-  background-color: var(--color-primary-500);
-  border-radius: 8px;
-  font-weight: 700;
-  color: var(--color-gray-800);
-`
-
 const LogoutButton = styled.button`
-  margin-left: 24px;
+  margin-right: 24px;
   padding: 4px;
 
   border: none;
