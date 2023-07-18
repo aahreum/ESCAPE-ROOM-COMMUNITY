@@ -1,26 +1,18 @@
 import { styled } from "styled-components"
-import ListBadge from "./ListBadge"
+import ListBadge from "../ListBadge"
 import { Link } from "react-router-dom"
 import { BiSolidUserCircle } from "react-icons/bi"
 import { FaUsers } from "react-icons/fa"
 import { IoTimeSharp } from "react-icons/io5"
-import { Timestamp } from "firebase/firestore"
 import { postTimeCalculation } from "../../../service/postGetDateCounter"
+import { listDataType } from "../../../service/useGetData"
 
-interface MateCardProps {
-  badgeText: string
-  listTitle: string
-  nickname: string
-  people: string
-  timestamp: Timestamp
-}
-
-const MateCard = ({ badgeText, listTitle, nickname, people, timestamp }: MateCardProps) => {
+const MateCard = ({ state, title, nickname, people, createdTime }: listDataType) => {
   return (
     <Link to={"/mate/:id"}>
       <CardContainer>
-        <ListBadge>{badgeText}</ListBadge>
-        <ListTitle>{listTitle}</ListTitle>
+        <ListBadge>{state}</ListBadge>
+        <ListTitle>{title}</ListTitle>
         <InfoArea>
           <div>
             <BiSolidUserCircle />
@@ -32,7 +24,7 @@ const MateCard = ({ badgeText, listTitle, nickname, people, timestamp }: MateCar
           </div>
           <div>
             <IoTimeSharp />
-            <p>{postTimeCalculation(timestamp)}</p>
+            <p>{postTimeCalculation(createdTime)}</p>
           </div>
         </InfoArea>
       </CardContainer>
@@ -53,7 +45,7 @@ const CardContainer = styled.div`
 `
 
 const ListTitle = styled.p`
-  padding-left: 4px;
+  padding-left: 2px;
   font-size: 18px;
   font-weight: 700;
 
@@ -70,7 +62,7 @@ const InfoArea = styled.div`
 
   > div {
     display: flex;
-    gap: 4px;
+    gap: 6px;
 
     &:last-child {
       margin-left: auto;

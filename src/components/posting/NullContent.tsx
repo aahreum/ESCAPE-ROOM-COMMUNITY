@@ -1,11 +1,16 @@
 import { styled } from "styled-components"
 import LinkButton from "../common/LinkButton"
 
-const NullContent = () => {
+const NullContent = ({ name }: { name: string }) => {
+  const GoToLink = () => {
+    if (name === "mate") return "/mate/write"
+    else return "/review/write"
+  }
+
   return (
     <Container>
       <Text>아직 작성한 글이 없어요</Text>
-      <LinkButton $bgColor={`var(--color-white)`} to={"/mate/write"}>
+      <LinkButton $bgColor={`var(--color-white)`} to={GoToLink()}>
         글쓰기
       </LinkButton>
     </Container>

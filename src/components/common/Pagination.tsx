@@ -67,6 +67,7 @@ const Pagination = ({ total, limit, page, setPage }: PaginationProps) => {
 }
 
 const PaginationContainer = styled.nav`
+  margin-top: 40px;
   display: flex;
   gap: 8px;
   justify-content: center;

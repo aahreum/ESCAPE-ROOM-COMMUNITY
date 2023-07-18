@@ -4,7 +4,7 @@ import Title from "../common/Title"
 import LinkButton from "../common/LinkButton"
 import { useLocation } from "react-router-dom"
 import { MATE, REVIEW } from "../../constants/postPathname"
-import { DataType } from "../../pages/Mate"
+import { DataType } from "../../service/useGetData"
 
 interface TitleContainerProps {
   content: DataType[] | null
