@@ -8,10 +8,9 @@ import {
   RECRUITMENT_STATUS,
 } from "../constants/dropDownMenu"
 import PostingContainer from "../components/posting/PostingContainer"
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import TextEditor from "../components/posting/TextEditor"
 import { ChangeEvent, useEffect, useState } from "react"
-import useTextSaveState from "../service/useTextSaveState"
 import Modal from "../components/common/Modal"
 import { Timestamp, addDoc, collection } from "firebase/firestore"
 import { auth, db } from "../firebase/firebase"
@@ -19,7 +18,9 @@ import { MATE_WRITE, REVIEW_WRITE } from "../constants/postPathname"
 
 const Write = (): JSX.Element => {
   const { pathname } = useLocation()
-  const { contentTitle, setContentTitle, content, setContent } = useTextSaveState()
+  const navigate = useNavigate()
+  const [contentTitle, setContentTitle] = useState("")
+  const [content, setContent] = useState("")
   const [selectedPeople, setSelectedPeople] = useState("")
   const [selectedState, setSelectedState] = useState("")
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -65,6 +66,16 @@ const Write = (): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contentSave])
 
+  const collectionName = () => {
+    if (pathname === MATE_WRITE) return "mateContents"
+    else return "reviewContents"
+  }
+
+  const pathName = () => {
+    if (pathname === MATE_WRITE) return "mate"
+    else return "review"
+  }
+
   const handleSave = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     try {
@@ -77,25 +88,16 @@ const Write = (): JSX.Element => {
         setContentSave(false)
         openModal()
       } else {
-        if (pathname === MATE_WRITE) {
-          await addDoc(collection(db, "mateContents"), {
-            title: contentTitle,
-            createdTime: Timestamp.fromDate(new Date()),
-            content: content,
-            nickname: auth.currentUser?.displayName,
-            people: selectedPeople,
-            state: selectedState,
-          })
-        } else if (pathname === REVIEW_WRITE) {
-          await addDoc(collection(db, "reviewContents"), {
-            title: contentTitle,
-            createdTime: Timestamp.fromDate(new Date()),
-            content: content,
-            nickname: auth.currentUser?.displayName,
-            people: selectedPeople,
-            state: selectedState,
-          })
-        }
+        const docRef = await addDoc(collection(db, collectionName()), {
+          title: contentTitle,
+          createdTime: Timestamp.fromDate(new Date()),
+          content: content,
+          nickname: auth.currentUser?.displayName,
+          people: selectedPeople,
+          state: selectedState,
+          views: 0,
+        })
+        navigate(`/${pathName()}/${docRef.id}`)
         setContentSave(true)
       }
     } catch (err) {
@@ -117,7 +119,7 @@ const Write = (): JSX.Element => {
         <Modal
           closeModal={closeModal}
           modalTitle="모든 내용을 입력해주세요."
-          modalButtonText="확인"
+          modalButtonText1="확인"
         />
       )}
       <PostingContainer>

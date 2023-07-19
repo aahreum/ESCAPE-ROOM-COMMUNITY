@@ -10,7 +10,7 @@ interface TitleContainerProps {
   content: DataType[] | null
 }
 
-const TitleContainer = ({ content }: TitleContainerProps) => {
+const TitleContainer = ({ content }: TitleContainerProps): JSX.Element => {
   const { pathname } = useLocation()
   const { isLogin } = useAccountState()
 
@@ -24,7 +24,10 @@ const TitleContainer = ({ content }: TitleContainerProps) => {
       <Title>{renderTitle()}</Title>
       {content === null ||
         (isLogin && (
-          <LinkButton $bgColor={"var(--color-white)"} to={"/mate/write"}>
+          <LinkButton
+            $bgColor={"var(--color-white)"}
+            to={pathname === MATE ? "/mate/write" : "/review/write"}
+          >
             글쓰기
           </LinkButton>
         ))}

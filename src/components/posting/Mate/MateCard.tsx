@@ -7,9 +7,16 @@ import { IoTimeSharp } from "react-icons/io5"
 import { postTimeCalculation } from "../../../service/postGetDateCounter"
 import { listDataType } from "../../../service/useGetData"
 
-const MateCard = ({ state, title, nickname, people, createdTime }: listDataType) => {
+const MateCard = ({
+  state,
+  title,
+  nickname,
+  people,
+  createdTime,
+  id,
+}: listDataType): JSX.Element => {
   return (
-    <Link to={"/mate/:id"}>
+    <Link to={`/mate/${id}`}>
       <CardContainer>
         <ListBadge>{state}</ListBadge>
         <ListTitle>{title}</ListTitle>

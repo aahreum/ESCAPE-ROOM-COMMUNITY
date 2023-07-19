@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { styled } from "styled-components"
 
-const NotFound = () => {
+const NotFound = (): JSX.Element => {
   return (
     <Container>
       <Title404>404</Title404>

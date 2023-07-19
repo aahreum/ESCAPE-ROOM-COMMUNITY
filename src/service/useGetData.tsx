@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { db } from "../firebase/firebase"
 
 export interface listDataType {
+  id: string
   title: string
   createdTime: Timestamp
   nickname: string
@@ -12,6 +13,7 @@ export interface listDataType {
 
 export interface DataType extends listDataType {
   content: string
+  views: number
 }
 
 const useGetData = (name: string) => {
@@ -24,8 +26,8 @@ const useGetData = (name: string) => {
       if (name === "mate") return collection(db, "mateContents")
       else return collection(db, "reviewContents")
     }
-    const collectionRef = contentName()
 
+    const collectionRef = contentName()
     const q = query(collectionRef, orderBy("createdTime", "desc"))
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -36,6 +38,7 @@ const useGetData = (name: string) => {
         const data: DataType[] = []
         snapshot.forEach((doc) => {
           const item = doc.data() as DataType
+          item.id = doc.id
           data.push(item)
         })
         setContentData(data)

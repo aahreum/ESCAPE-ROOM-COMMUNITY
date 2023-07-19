@@ -7,9 +7,16 @@ import { IoTimeSharp } from "react-icons/io5"
 import { listDataType } from "../../../service/useGetData"
 import { postTimeCalculation } from "../../../service/postGetDateCounter"
 
-const ReviewItem = ({ state, title, nickname, people, createdTime }: listDataType) => {
+const ReviewItem = ({
+  state,
+  title,
+  nickname,
+  people,
+  createdTime,
+  id,
+}: listDataType): JSX.Element => {
   return (
-    <Link to={"/review/:id"}>
+    <Link to={`/review/${id}`}>
       <ItemContainer>
         <ListBadge>{state}</ListBadge>
         <ListTitle>{title}</ListTitle>

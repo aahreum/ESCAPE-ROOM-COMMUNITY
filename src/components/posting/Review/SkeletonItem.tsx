@@ -1,6 +1,6 @@
 import { styled } from "styled-components"
 
-const SkeletonItem = () => {
+const SkeletonItem = (): JSX.Element => {
   return (
     <SkeletonItemEl>
       <div />

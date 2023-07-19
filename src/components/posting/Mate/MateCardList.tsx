@@ -1,11 +1,14 @@
 import { styled } from "styled-components"
-import useGetData from "../../../service/useGetData"
+import useGetData, { DataType } from "../../../service/useGetData"
 import MateCard from "./MateCard"
 import NullContent from "../NullContent"
 import SkeletonCard from "./SkeletonCard"
+import Pagination from "../../common/Pagination"
+import { useLocation } from "react-router-dom"
 
-const MateCardList = ({ limit }: { limit: number }) => {
-  const { loading, contentData, page } = useGetData("mate")
+const MateCardList = ({ limit }: { limit: number }): JSX.Element => {
+  const { pathname } = useLocation()
+  const { loading, contentData, page, setPage } = useGetData("mate")
   const offset = (page - 1) * limit
 
   return (
@@ -19,18 +22,24 @@ const MateCardList = ({ limit }: { limit: number }) => {
       ) : contentData === null ? (
         <NullContent name={"mate"} />
       ) : (
-        <CardContainer>
-          {contentData.slice(offset, offset + limit).map((item, index) => (
-            <MateCard
-              key={`mate_${index}`}
-              state={item.state}
-              title={item.title}
-              nickname={item.nickname}
-              people={item.people}
-              createdTime={item.createdTime}
-            />
-          ))}
-        </CardContainer>
+        <>
+          <CardContainer>
+            {contentData.slice(offset, offset + limit).map((item: DataType) => (
+              <MateCard
+                id={item.id}
+                key={item.id}
+                state={item.state}
+                title={item.title}
+                nickname={item.nickname}
+                people={item.people}
+                createdTime={item.createdTime}
+              />
+            ))}
+          </CardContainer>
+          {pathname === "/" ? null : (
+            <Pagination total={contentData.length} limit={limit} page={page} setPage={setPage} />
+          )}
+        </>
       )}
     </>
   )

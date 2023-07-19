@@ -3,8 +3,11 @@ import { styled } from "styled-components"
 
 interface ModalPropsType {
   closeModal: MouseEventHandler<HTMLButtonElement>
+  handleModal?: MouseEventHandler<HTMLButtonElement>
   modalTitle: string
-  modalButtonText: string
+  modalButtonText1: string
+  modalButtonText2?: string
+  twoButtons?: boolean
 }
 
 const Modal = ({ ...props }: ModalPropsType): JSX.Element => {
@@ -19,7 +22,14 @@ const Modal = ({ ...props }: ModalPropsType): JSX.Element => {
     <ModalContainer>
       <ModalEl>
         <ModalTitle>{props.modalTitle}</ModalTitle>
-        <ModalButton onClick={props.closeModal}>{props.modalButtonText}</ModalButton>
+        {props.twoButtons ? (
+          <ButtonArea>
+            <ModalButton onClick={props.closeModal}>{props.modalButtonText1}</ModalButton>
+            <ModalButton onClick={props.handleModal}>{props.modalButtonText2}</ModalButton>
+          </ButtonArea>
+        ) : (
+          <ModalButton onClick={props.closeModal}>{props.modalButtonText1}</ModalButton>
+        )}
       </ModalEl>
     </ModalContainer>
   )
@@ -58,6 +68,15 @@ const ModalTitle = styled.p`
   text-align: center;
 `
 
+const ButtonArea = styled.div`
+  display: flex;
+  gap: 16px;
+
+  & > :first-child {
+    background-color: var(--color-white);
+  }
+`
+
 const ModalButton = styled.button`
   width: 140px;
   height: 48px;
@@ -69,6 +88,8 @@ const ModalButton = styled.button`
   font-size: 16px;
   font-weight: 600;
   color: var(--color-gray-800);
+
+  cursor: pointer;
 `
 
 export default Modal

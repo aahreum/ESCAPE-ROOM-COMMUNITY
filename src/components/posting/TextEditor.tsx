@@ -8,11 +8,11 @@ interface TextEditorType {
   content: string
 }
 
-const TextEditor = ({ setContent, content }: TextEditorType) => {
+const TextEditor = ({ setContent, content }: TextEditorType): JSX.Element => {
   const modules = {
     toolbar: {
       container: [
-        [{ header: [1, 2, 3, false] }],
+        [{ header: "3" }, { header: "4" }],
         [{ font: [] }],
         [{ align: [] }],
         ["bold", "italic", "underline", "strike", "blockquote"],
@@ -69,6 +69,22 @@ const QuillEditor = styled(({ ...props }) => <ReactQuill {...props} />).withConf
     border-bottom: 1px solid var(--color-gray-300);
     border-radius: 8px 8px 0px 0px;
     background-color: var(--color-gray-600);
+  }
+
+  .ql-header[value="3"] {
+    &::after {
+      content: "H1";
+      color: var(--color-white);
+      font-weight: 700;
+    }
+  }
+
+  .ql-header[value="4"] {
+    &::after {
+      content: "H2";
+      color: var(--color-white);
+      font-weight: 700;
+    }
   }
 
   .ql-editor {

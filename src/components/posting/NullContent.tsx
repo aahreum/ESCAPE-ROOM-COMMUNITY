@@ -1,7 +1,10 @@
 import { styled } from "styled-components"
 import LinkButton from "../common/LinkButton"
+import useAccountState from "../../service/useAccountState"
 
-const NullContent = ({ name }: { name: string }) => {
+const NullContent = ({ name }: { name: string }): JSX.Element => {
+  const { isLogin } = useAccountState()
+
   const GoToLink = () => {
     if (name === "mate") return "/mate/write"
     else return "/review/write"
@@ -10,9 +13,11 @@ const NullContent = ({ name }: { name: string }) => {
   return (
     <Container>
       <Text>아직 작성한 글이 없어요</Text>
-      <LinkButton $bgColor={`var(--color-white)`} to={GoToLink()}>
-        글쓰기
-      </LinkButton>
+      {isLogin && (
+        <LinkButton $bgColor={`var(--color-white)`} to={GoToLink()}>
+          글쓰기
+        </LinkButton>
+      )}
     </Container>
   )
 }
