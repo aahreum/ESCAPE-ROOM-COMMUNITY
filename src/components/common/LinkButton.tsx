@@ -5,6 +5,7 @@ interface LinkButtonProps extends LinkProps {
   children: string
   $bgColor?: string
   $color?: string
+  $border?: boolean
 }
 const LinkButton = ({ children, $bgColor, $color, ...rest }: LinkButtonProps) => {
   return (
@@ -15,10 +16,11 @@ const LinkButton = ({ children, $bgColor, $color, ...rest }: LinkButtonProps) =>
 }
 
 const LinkButtonEl = styled(Link)<LinkButtonProps>`
-  padding: 14px 24px;
+  padding: 15px 24px;
 
   border-radius: 8px;
   background-color: ${(props) => props.$bgColor || "var(--color-primary-500)"};
+  ${(props) => props.$border && `border: 1px solid ${props.$color}`};
 
   font-weight: 600;
   color: ${(props) => props.$color || "var(--color-gray-800)"};

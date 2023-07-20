@@ -1,20 +1,18 @@
 import { styled } from "styled-components"
-import Title from "../components/common/Title"
-import DropDownMenu from "../components/posting/DropDownMenu"
-import {
-  ESCAPE_STATUS,
-  NUMBER_OF_PEOPLE,
-  PLACEHOLDER,
-  RECRUITMENT_STATUS,
-} from "../constants/dropDownMenu"
+import { PLACEHOLDER } from "../constants/dropDownMenu"
 import PostingContainer from "../components/posting/PostingContainer"
 import { useLocation, useNavigate } from "react-router-dom"
 import TextEditor from "../components/posting/TextEditor"
 import { ChangeEvent, useEffect, useState } from "react"
 import Modal from "../components/common/Modal"
 import { Timestamp, addDoc, collection } from "firebase/firestore"
-import { auth, db } from "../firebase/firebase"
-import { MATE_WRITE, REVIEW_WRITE } from "../constants/postPathname"
+import { MATE_WRITE } from "../constants/postPathname"
+import TextEditTitle from "../components/posting/TextEditTitle"
+import usePathnameChange from "../service/useContentNameChange"
+import { db } from "../firebase/firestore"
+import { auth } from "../firebase/auth"
+import DropDownMenuArea from "../components/posting/DropDownMenuArea"
+import TitleInput from "../components/posting/TitleInput"
 
 const Write = (): JSX.Element => {
   const { pathname } = useLocation()
@@ -25,35 +23,7 @@ const Write = (): JSX.Element => {
   const [selectedState, setSelectedState] = useState("")
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [contentSave, setContentSave] = useState(false)
-
-  const renderTitle = () => {
-    if (pathname === MATE_WRITE) return "메이트 구하기"
-    else if (pathname === REVIEW_WRITE) return "탈출후기"
-  }
-
-  const renderDropDwonMenu = () => {
-    if (pathname === MATE_WRITE) {
-      return (
-        <DropDownMenu
-          name="모집여부"
-          seletedState={selectedState}
-          setSelectedState={setSelectedState}
-          placeHolder={PLACEHOLDER.recruitment}
-          dropDownMenu={RECRUITMENT_STATUS}
-        />
-      )
-    } else if (pathname === REVIEW_WRITE) {
-      return (
-        <DropDownMenu
-          name="탈출여부"
-          seletedState={selectedState}
-          setSelectedState={setSelectedState}
-          placeHolder={PLACEHOLDER.escape}
-          dropDownMenu={ESCAPE_STATUS}
-        />
-      )
-    }
-  }
+  const { pathnameChange } = usePathnameChange()
 
   useEffect(() => {
     if (contentSave) {
@@ -71,12 +41,7 @@ const Write = (): JSX.Element => {
     else return "reviewContents"
   }
 
-  const pathName = () => {
-    if (pathname === MATE_WRITE) return "mate"
-    else return "review"
-  }
-
-  const handleSave = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSavePost = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     try {
       if (
@@ -97,7 +62,7 @@ const Write = (): JSX.Element => {
           state: selectedState,
           views: 0,
         })
-        navigate(`/${pathName()}/${docRef.id}`)
+        navigate(`${pathnameChange()}/${docRef.id}`)
         setContentSave(true)
       }
     } catch (err) {
@@ -123,64 +88,32 @@ const Write = (): JSX.Element => {
         />
       )}
       <PostingContainer>
-        <Title>{renderTitle()}</Title>
-        <TextEditContainer>
-          <DropDownMenuContainer>
-            <DropDownMenu
-              name="인원수"
-              selectedPeople={selectedPeople}
-              setSelectedPeople={setSelectedPeople}
-              placeHolder={PLACEHOLDER.people}
-              dropDownMenu={NUMBER_OF_PEOPLE}
-            />
-            {renderDropDwonMenu()}
-          </DropDownMenuContainer>
+        <TextEditTitle />
+        <TextEditArea>
+          <DropDownMenuArea
+            selectedPeople={selectedPeople}
+            setSelectedPeople={setSelectedPeople}
+            selectedState={selectedState}
+            setSelectedState={setSelectedState}
+          />
           <TitleInput
-            value={contentTitle}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => setContentTitle(e.target.value)}
-            type="text"
-            placeholder="제목을 입력해주세요"
+            title={contentTitle}
+            setTitle={(e: ChangeEvent<HTMLInputElement>) => setContentTitle(e.target.value)}
           />
           <TextEditor content={content} setContent={setContent} />
-          <TextSaveButton onClick={handleSave} type="submit">
+          <TextSaveButton onClick={handleSavePost} type="submit">
             작성완료
           </TextSaveButton>
-        </TextEditContainer>
+        </TextEditArea>
       </PostingContainer>
     </>
   )
 }
 
-const DropDownMenuContainer = styled.form`
-  margin-top: 40px;
-  display: flex;
-  gap: 20px;
-`
-const TextEditContainer = styled.div`
+const TextEditArea = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-`
-
-const TitleInput = styled.input`
-  width: 100%;
-  height: 50px;
-
-  padding-left: 16px;
-  background-color: var(--color-gray-600);
-
-  font-size: 16px;
-  color: var(--color-white);
-
-  border: none;
-  border-radius: 8px;
-
-  &::placeholder {
-    font-size: 16px;
-    font-weight: 100;
-    letter-spacing: 0px;
-    color: var(--color-gray-200);
-  }
 `
 
 const TextSaveButton = styled.button`

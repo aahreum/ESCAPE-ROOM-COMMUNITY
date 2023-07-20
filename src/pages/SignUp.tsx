@@ -3,7 +3,6 @@ import React from "react"
 import { EMAIL_REGEX, NICKNAME_REGEX, PASSWORD_REGEX } from "../constants/regex"
 import LogoNav from "../components/auth/LogoNav"
 import { fetchSignInMethodsForEmail, updateProfile } from "firebase/auth"
-import { auth, db, signUpEmail } from "../firebase/firebase"
 import { useNavigate } from "react-router-dom"
 import AuthInput from "../components/auth/AuthInput"
 import AuthButton from "../components/auth/AuthButton"
@@ -12,6 +11,8 @@ import Title from "../components/common/Title"
 import useAccountState from "../service/useAccountState"
 import { saveNicknameToFirestore } from "../service/saveNicknameToFirestore"
 import { collection, getDocs, query, where } from "firebase/firestore"
+import { auth, signUpEmail } from "../firebase/auth"
+import { db } from "../firebase/firestore"
 
 const SignUp = (): JSX.Element => {
   const navigate = useNavigate()

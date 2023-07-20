@@ -1,5 +1,3 @@
-import { signOut } from "firebase/auth"
-import { auth } from "../../firebase/firebase"
 import { styled } from "styled-components"
 import { Link } from "react-router-dom"
 import { ReactComponent as LogoIcon } from "../../assets/logo.svg"
@@ -9,6 +7,7 @@ import { logout } from "../../reducers/authSlice"
 import { useDispatch } from "react-redux"
 import useAccountState from "../../service/useAccountState"
 import LinkButton from "./LinkButton"
+import { signOutAll } from "../../firebase/auth"
 
 const PageNav = (): JSX.Element => {
   const dispatch = useDispatch()
@@ -25,7 +24,7 @@ const PageNav = (): JSX.Element => {
   }
 
   const handleLogout = async () => {
-    await signOut(auth)
+    await signOutAll
     dispatch(logout())
   }
 

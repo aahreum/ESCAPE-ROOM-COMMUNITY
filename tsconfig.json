@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "svg.d.ts"],
+  "include": ["src", "svg.d.ts", "src/service/increaseViews.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

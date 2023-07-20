@@ -1,6 +1,6 @@
 import { Timestamp, collection, onSnapshot, orderBy, query } from "firebase/firestore"
 import { useEffect, useState } from "react"
-import { db } from "../firebase/firebase"
+import { db } from "../firebase/firestore"
 
 export interface listDataType {
   id: string
@@ -22,12 +22,12 @@ const useGetData = (name: string) => {
   const [page, setPage] = useState(1)
 
   useEffect(() => {
-    const contentName = () => {
+    const collectionName = () => {
       if (name === "mate") return collection(db, "mateContents")
       else return collection(db, "reviewContents")
     }
 
-    const collectionRef = contentName()
+    const collectionRef = collectionName()
     const q = query(collectionRef, orderBy("createdTime", "desc"))
 
     const unsubscribe = onSnapshot(q, (snapshot) => {

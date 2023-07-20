@@ -4,13 +4,17 @@ import ListBadge from "../ListBadge"
 import { postTimeCalculation } from "../../../service/postGetDateCounter"
 import { FaUsers } from "react-icons/fa"
 import { IoTimeSharp } from "react-icons/io5"
-import React, { useState } from "react"
+import { useState } from "react"
 import LinkButton from "../../common/LinkButton"
 import { useLocation, useNavigate } from "react-router-dom"
 import { DataType } from "../../../service/useGetData"
 import { deleteDoc, doc } from "firebase/firestore"
-import { db } from "../../../firebase/firebase"
 import Modal from "../../common/Modal"
+import QuillDisplay from "./QuillDisplay"
+import useContentNameChange from "../../../service/useContentNameChange"
+import { db } from "../../../firebase/firestore"
+import { auth } from "../../../firebase/auth"
+import useAccountState from "../../../service/useAccountState"
 
 const ContentView = ({
   title,
@@ -25,7 +29,8 @@ const ContentView = ({
   const { pathname } = useLocation()
   const navigate = useNavigate()
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const contentToHtml = React.createElement("div", { dangerouslySetInnerHTML: { __html: content } })
+  const { pathnameChange } = useContentNameChange()
+  const { isLogin } = useAccountState()
 
   const deleteContent = () => {
     if (pathname.includes("/mate/")) {
@@ -74,12 +79,26 @@ const ContentView = ({
             <InfoDesc>조회수: {views}</InfoDesc>
           </InfoArea>
         </TitleArea>
-        <Content>{contentToHtml}</Content>
+        <ContentArea>
+          <QuillDisplay content={content} />
+        </ContentArea>
         <ButtonArea>
-          <DeleteButton type="button" onClick={openModal}>
-            삭제하기
-          </DeleteButton>
-          <LinkButton to={pathname.includes("/mate/") ? "/mate" : "/review"}>목록보기</LinkButton>
+          {isLogin && (
+            <>
+              <LinkButton
+                to={`${pathnameChange()}/${id}/modify`}
+                $border
+                $color="var(--color-white)"
+                $bgColor="var(--color-gray-600)"
+              >
+                수정하기
+              </LinkButton>
+              <DeleteButton type="button" onClick={openModal}>
+                삭제하기
+              </DeleteButton>
+            </>
+          )}
+          <LinkButton to={pathnameChange()}>목록보기</LinkButton>
         </ButtonArea>
       </PostingContainer>
     </>
@@ -114,50 +133,30 @@ const InfoDesc = styled.p`
   color: var(--color-gray-200);
 `
 
-const Content = styled.div`
+const ContentArea = styled.div`
   margin-top: 24px;
   padding: 24px;
   border-top: 1px solid var(--color-gray-300);
   border-bottom: 1px solid var(--color-gray-300);
 
-  line-height: 24px;
-
-  & > div > h3 {
-    font-size: 24px;
-    line-height: 32px;
+  .ql-container {
+    border: none;
   }
 
-  & > div > h4 {
-    font-size: 20px;
-    line-height: 28px;
-  }
+  .ql-editor {
+    padding: 0;
 
-  .ql-align-center {
-    text-align: center;
-  }
+    & > h3 {
+      font-size: 24px;
+    }
 
-  .ql-align-right {
-    text-align: end;
-  }
+    & > h4 {
+      font-size: 20px;
+    }
 
-  & > div > blockquote {
-    margin: 8px 0;
-    padding: 15px;
-    background-color: var(--color-gray-600);
-    border-radius: 5px;
-  }
-
-  & > div > ol {
-    list-style: auto;
-  }
-
-  & > div > ul {
-    list-style: disc;
-  }
-
-  & > div > p > a {
-    color: var(--color-primary-500);
-    text-decoration: underline;
+    & > p {
+      font-size: 16px;
+    }
   }
 `
 
@@ -171,6 +170,18 @@ const ButtonArea = styled.div`
   }
 `
 
-const DeleteButton = styled.button``
+const DeleteButton = styled.button`
+  padding: 0 24px;
+
+  background-color: var(--color-gray-600);
+  border: 1px solid var(--color-negative-500);
+  border-radius: 8px;
+
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-negative-500);
+
+  cursor: pointer;
+`
 
 export default ContentView

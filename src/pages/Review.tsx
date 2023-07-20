@@ -4,7 +4,7 @@ import TitleContainer from "../components/posting/TitleContainer"
 import ReviewList from "../components/posting/Review/ReviewList"
 
 const Review = (): JSX.Element => {
-  const { contentData } = useGetData("reivew")
+  const { contentData } = useGetData("review")
   const limit = 5
 
   return (

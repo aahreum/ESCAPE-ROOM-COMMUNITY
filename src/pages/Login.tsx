@@ -2,8 +2,6 @@ import { signInWithPopup } from "firebase/auth"
 import { styled } from "styled-components"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
-import { googleProvider, loginEmail, auth } from "../firebase/firebase"
-
 import { EMAIL_REGEX } from "../constants/regex"
 import LogoNav from "../components/auth/LogoNav"
 import { ReactComponent as GoogleIcon } from "../assets/google.svg"
@@ -14,6 +12,7 @@ import useAccountState from "../service/useAccountState"
 import AuthButton from "../components/auth/AuthButton"
 import { useDispatch } from "react-redux"
 import { login } from "../reducers/authSlice"
+import { auth, googleProvider, loginEmail } from "../firebase/auth"
 
 const Login = (): JSX.Element => {
   const navigate = useNavigate()

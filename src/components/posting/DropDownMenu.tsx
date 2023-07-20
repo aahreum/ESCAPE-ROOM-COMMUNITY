@@ -9,7 +9,7 @@ interface DropDownMenuProps {
   name: string
   selectedPeople?: string
   setSelectedPeople?: React.Dispatch<React.SetStateAction<string>>
-  seletedState?: string
+  selectedState?: string
   setSelectedState?: React.Dispatch<React.SetStateAction<string>>
 }
 
@@ -17,7 +17,7 @@ const DropDownMenu = ({
   placeHolder,
   dropDownMenu,
   name,
-  seletedState,
+  selectedState,
   setSelectedState,
   selectedPeople,
   setSelectedPeople,
@@ -45,7 +45,7 @@ const DropDownMenu = ({
 
   const defaultSelected = () => {
     if (isSelected) {
-      if (name === "모집여부" || name === "탈출여부") return seletedState
+      if (name === "모집여부" || name === "탈출여부") return selectedState
       if (name === "인원수") return selectedPeople
     } else {
       return placeHolder

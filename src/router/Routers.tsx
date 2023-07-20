@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute"
 import useAccountState from "../service/useAccountState"
 import NotFound from "../pages/NotFound"
 import DetailView from "../pages/DetailView"
+import Modify from "../pages/Modify"
 
 const Routers = () => {
   const { isLogin } = useAccountState()
@@ -28,6 +29,8 @@ const Routers = () => {
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/mate/write" element={<Write />} />
         <Route path="/review/write" element={<Write />} />
+        <Route path="/mate/:id/modify" element={<Modify />} />
+        <Route path="/review/:id/modify" element={<Modify />} />
       </Route>
     </Routes>
   )

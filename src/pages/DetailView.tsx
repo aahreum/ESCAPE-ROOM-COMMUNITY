@@ -1,16 +1,15 @@
-import { useLocation, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import useGetData from "../service/useGetData"
 import NotFound from "./NotFound"
 import ContentView from "../components/posting/PostingView/ContentView"
-import { collection, doc, runTransaction } from "firebase/firestore"
-import { db } from "../firebase/firebase"
+import useContentNameChange from "../service/useContentNameChange"
 
 const DetailView = (): JSX.Element => {
   const { id } = useParams()
-  const { pathname } = useLocation()
+  const { getDataNameChange } = useContentNameChange()
 
-  const { contentData, loading } = useGetData(pathname.includes("/mate/") ? "mate" : "review")
-  const content = contentData?.find((contentData) => {
+  const { contentData, loading } = useGetData(getDataNameChange())
+  const data = contentData?.find((contentData) => {
     return contentData.id === id
   })
 
@@ -20,19 +19,19 @@ const DetailView = (): JSX.Element => {
 
   return (
     <>
-      {!content ? (
+      {!data ? (
         <NotFound />
       ) : (
         <>
           <ContentView
-            id={content.id}
-            state={content.state}
-            title={content.title}
-            content={content.content}
-            nickname={content.nickname}
-            people={content.people}
-            createdTime={content.createdTime}
-            views={content.views}
+            id={data.id}
+            state={data.state}
+            title={data.title}
+            content={data.content}
+            nickname={data.nickname}
+            people={data.people}
+            createdTime={data.createdTime}
+            views={data.views}
           />
         </>
       )}
