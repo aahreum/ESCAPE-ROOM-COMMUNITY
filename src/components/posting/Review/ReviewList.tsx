@@ -1,5 +1,5 @@
 import { styled } from "styled-components"
-import useGetData from "../../../service/useGetData"
+import useGetPostData from "../../../service/useGetPostData"
 import ReviewItem from "./ReviewItem"
 import SkeletonItem from "./SkeletonItem"
 import NullContent from "../NullContent"
@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom"
 
 const ReviewList = ({ limit }: { limit: number }): JSX.Element => {
   const { pathname } = useLocation()
-  const { loading, contentData, page, setPage } = useGetData("review")
+  const { loading, contentData, page, setPage } = useGetPostData("review")
   const offset = (page - 1) * limit
 
   return (

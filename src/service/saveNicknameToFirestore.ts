@@ -1,5 +1,5 @@
 import { addDoc, collection } from "firebase/firestore"
-import { db } from "../firebase/firestore"
+import { db } from "../firebase/firebase"
 
 export const saveNicknameToFirestore = async (nickname: string) => {
   try {

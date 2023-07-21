@@ -4,7 +4,7 @@ import { styled } from "styled-components"
 import { BiSolidUserCircle } from "react-icons/bi"
 import { FaUsers } from "react-icons/fa"
 import { IoTimeSharp } from "react-icons/io5"
-import { listDataType } from "../../../service/useGetData"
+import { listDataType } from "../../../service/useGetPostData"
 import { postTimeCalculation } from "../../../service/postGetDateCounter"
 
 const ReviewItem = ({

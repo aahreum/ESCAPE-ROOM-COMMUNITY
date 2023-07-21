@@ -1,10 +1,10 @@
-import useGetData from "../service/useGetData"
+import useGetPostData from "../service/useGetPostData"
 import MainContainer from "../components/common/MainContainer"
 import TitleContainer from "../components/posting/TitleContainer"
 import ReviewList from "../components/posting/Review/ReviewList"
 
 const Review = (): JSX.Element => {
-  const { contentData } = useGetData("review")
+  const { contentData } = useGetPostData("review")
   const limit = 5
 
   return (

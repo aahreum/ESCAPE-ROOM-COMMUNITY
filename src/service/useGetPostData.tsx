@@ -1,6 +1,6 @@
 import { Timestamp, collection, onSnapshot, orderBy, query } from "firebase/firestore"
 import { useEffect, useState } from "react"
-import { db } from "../firebase/firestore"
+import { db } from "../firebase/firebase"
 
 export interface listDataType {
   id: string
@@ -13,10 +13,9 @@ export interface listDataType {
 
 export interface DataType extends listDataType {
   content: string
-  views: number
 }
 
-const useGetData = (name: string) => {
+const useGetPostData = (name: string) => {
   const [loading, setLoading] = useState(true)
   const [contentData, setContentData] = useState<DataType[] | null>(null)
   const [page, setPage] = useState(1)
@@ -52,4 +51,4 @@ const useGetData = (name: string) => {
   return { loading, setLoading, contentData, setContentData, page, setPage }
 }
 
-export default useGetData
+export default useGetPostData

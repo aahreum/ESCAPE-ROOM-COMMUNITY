@@ -4,12 +4,12 @@ import PostingContainer from "../components/posting/PostingContainer"
 import TextEditTitle from "../components/posting/TextEditTitle"
 import TextEditor from "../components/posting/TextEditor"
 import useContentNameChange from "../service/useContentNameChange"
-import useGetData from "../service/useGetData"
+import useGetPostData from "../service/useGetPostData"
 import { styled } from "styled-components"
 import { useNavigate, useParams } from "react-router-dom"
 import TitleInput from "../components/posting/TitleInput"
 import { collection, doc, updateDoc } from "firebase/firestore"
-import { db } from "../firebase/firestore"
+import { db } from "../firebase/firebase"
 import usePathname from "../service/usePathname"
 import usePathnameChange from "../service/useContentNameChange"
 
@@ -17,7 +17,7 @@ const Modify = () => {
   const { id } = useParams()
   const { includesMateSlash } = usePathname()
   const { getDataNameChange } = useContentNameChange()
-  const { contentData, loading } = useGetData(getDataNameChange())
+  const { contentData, loading } = useGetPostData(getDataNameChange())
   const [editedTitle, setEditedTitle] = useState("")
   const [editedContent, setEditedContent] = useState("")
   const [editedSelectedPeople, setEditedSelectedPeople] = useState("")

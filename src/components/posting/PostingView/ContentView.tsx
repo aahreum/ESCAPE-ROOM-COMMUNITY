@@ -1,42 +1,32 @@
 import { styled } from "styled-components"
-import PostingContainer from "../PostingContainer"
 import ListBadge from "../ListBadge"
 import { postTimeCalculation } from "../../../service/postGetDateCounter"
 import { FaUsers } from "react-icons/fa"
 import { IoTimeSharp } from "react-icons/io5"
 import { useState } from "react"
 import LinkButton from "../../common/LinkButton"
-import { useLocation, useNavigate } from "react-router-dom"
-import { DataType } from "../../../service/useGetData"
+import { useNavigate } from "react-router-dom"
+import { DataType } from "../../../service/useGetPostData"
 import { deleteDoc, doc } from "firebase/firestore"
 import Modal from "../../common/Modal"
 import QuillDisplay from "./QuillDisplay"
 import useContentNameChange from "../../../service/useContentNameChange"
-import { db } from "../../../firebase/firestore"
-import { auth } from "../../../firebase/auth"
 import useAccountState from "../../../service/useAccountState"
+import usePathname from "../../../service/usePathname"
+import { auth, db } from "../../../firebase/firebase"
 
-const ContentView = ({
-  title,
-  content,
-  state,
-  nickname,
-  people,
-  createdTime,
-  id,
-  views,
-}: DataType) => {
-  const { pathname } = useLocation()
+const ContentView = ({ title, content, state, nickname, people, createdTime, id }: DataType) => {
   const navigate = useNavigate()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const { pathnameChange } = useContentNameChange()
   const { isLogin } = useAccountState()
+  const { includesMateSlash } = usePathname()
 
   const deleteContent = () => {
-    if (pathname.includes("/mate/")) {
+    if (includesMateSlash) {
       deleteDoc(doc(db, "mateContents", id))
       navigate("/mate")
-    } else if (pathname.includes("/review/")) {
+    } else {
       deleteDoc(doc(db, "reviewContents", id))
       navigate("/review")
     }
@@ -62,7 +52,7 @@ const ContentView = ({
           twoButtons
         />
       )}
-      <PostingContainer>
+      <>
         <TitleArea>
           <ListBadge>{state}</ListBadge>
           <ContentTitle>{title}</ContentTitle>
@@ -76,14 +66,13 @@ const ContentView = ({
               <IoTimeSharp />
               <InfoDesc>{postTimeCalculation(createdTime)}</InfoDesc>
             </InfoItem>
-            <InfoDesc>조회수: {views}</InfoDesc>
           </InfoArea>
         </TitleArea>
         <ContentArea>
           <QuillDisplay content={content} />
         </ContentArea>
         <ButtonArea>
-          {isLogin && (
+          {isLogin && auth.currentUser?.displayName === nickname && (
             <>
               <LinkButton
                 to={`${pathnameChange()}/${id}/modify`}
@@ -100,7 +89,7 @@ const ContentView = ({
           )}
           <LinkButton to={pathnameChange()}>목록보기</LinkButton>
         </ButtonArea>
-      </PostingContainer>
+      </>
     </>
   )
 }

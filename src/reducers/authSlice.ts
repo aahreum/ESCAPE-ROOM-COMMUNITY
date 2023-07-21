@@ -4,7 +4,7 @@ import { setPersistence } from "firebase/auth"
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    isLogin: localStorage.getItem("isLogin") === "true",
+    isLogin: localStorage.getItem("isLogin") === "true" || false,
   },
   reducers: {
     login: (state) => {

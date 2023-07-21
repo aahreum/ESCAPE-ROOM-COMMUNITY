@@ -1,14 +1,16 @@
 import { useParams } from "react-router-dom"
-import useGetData from "../service/useGetData"
+import useGetPostData from "../service/useGetPostData"
 import NotFound from "./NotFound"
 import ContentView from "../components/posting/PostingView/ContentView"
 import useContentNameChange from "../service/useContentNameChange"
+import Comments from "../components/posting/Comments/Comments"
+import PostingContainer from "../components/posting/PostingContainer"
 
 const DetailView = (): JSX.Element => {
   const { id } = useParams()
   const { getDataNameChange } = useContentNameChange()
 
-  const { contentData, loading } = useGetData(getDataNameChange())
+  const { contentData, loading } = useGetPostData(getDataNameChange())
   const data = contentData?.find((contentData) => {
     return contentData.id === id
   })
@@ -22,7 +24,7 @@ const DetailView = (): JSX.Element => {
       {!data ? (
         <NotFound />
       ) : (
-        <>
+        <PostingContainer>
           <ContentView
             id={data.id}
             state={data.state}
@@ -31,9 +33,9 @@ const DetailView = (): JSX.Element => {
             nickname={data.nickname}
             people={data.people}
             createdTime={data.createdTime}
-            views={data.views}
           />
-        </>
+          <Comments postId={data.id} />
+        </PostingContainer>
       )}
     </>
   )

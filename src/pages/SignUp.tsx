@@ -11,8 +11,7 @@ import Title from "../components/common/Title"
 import useAccountState from "../service/useAccountState"
 import { saveNicknameToFirestore } from "../service/saveNicknameToFirestore"
 import { collection, getDocs, query, where } from "firebase/firestore"
-import { auth, signUpEmail } from "../firebase/auth"
-import { db } from "../firebase/firestore"
+import { auth, db, signUpEmail } from "../firebase/firebase"
 
 const SignUp = (): JSX.Element => {
   const navigate = useNavigate()

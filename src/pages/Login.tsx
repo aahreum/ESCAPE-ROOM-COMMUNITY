@@ -12,7 +12,7 @@ import useAccountState from "../service/useAccountState"
 import AuthButton from "../components/auth/AuthButton"
 import { useDispatch } from "react-redux"
 import { login } from "../reducers/authSlice"
-import { auth, googleProvider, loginEmail } from "../firebase/auth"
+import { auth, googleProvider, loginEmail } from "../firebase/firebase"
 
 const Login = (): JSX.Element => {
   const navigate = useNavigate()

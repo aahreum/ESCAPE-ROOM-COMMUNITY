@@ -7,7 +7,8 @@ import { logout } from "../../reducers/authSlice"
 import { useDispatch } from "react-redux"
 import useAccountState from "../../service/useAccountState"
 import LinkButton from "./LinkButton"
-import { signOutAll } from "../../firebase/auth"
+import { auth } from "../../firebase/firebase"
+import { signOut } from "firebase/auth"
 
 const PageNav = (): JSX.Element => {
   const dispatch = useDispatch()
@@ -24,7 +25,7 @@ const PageNav = (): JSX.Element => {
   }
 
   const handleLogout = async () => {
-    await signOutAll
+    await signOut(auth)
     dispatch(logout())
   }
 

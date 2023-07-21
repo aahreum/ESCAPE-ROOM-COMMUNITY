@@ -1,5 +1,5 @@
 import { styled } from "styled-components"
-import useGetData, { DataType } from "../../../service/useGetData"
+import useGetPostData, { DataType } from "../../../service/useGetPostData"
 import MateCard from "./MateCard"
 import NullContent from "../NullContent"
 import SkeletonCard from "./SkeletonCard"
@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom"
 
 const MateCardList = ({ limit }: { limit: number }): JSX.Element => {
   const { pathname } = useLocation()
-  const { loading, contentData, page, setPage } = useGetData("mate")
+  const { loading, contentData, page, setPage } = useGetPostData("mate")
   const offset = (page - 1) * limit
 
   return (

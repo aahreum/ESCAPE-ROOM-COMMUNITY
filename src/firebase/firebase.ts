@@ -1,4 +1,12 @@
 import { initializeApp } from "firebase/app"
+import {
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth"
+import { getFirestore } from "firebase/firestore"
 
 const {
   VITE_FIREBASE_API_KEY,
@@ -22,3 +30,18 @@ const firebaseConfig = {
 
 // Firebase 초기화
 export const app = initializeApp(firebaseConfig)
+export const auth = getAuth(app)
+export const db = getFirestore(app)
+
+// Email 회원가입
+export const signUpEmail = (email: string, password: string) => {
+  return createUserWithEmailAndPassword(auth, email, password)
+}
+
+// Email 로그인
+export const loginEmail = (email: string, password: string) => {
+  return signInWithEmailAndPassword(auth, email, password)
+}
+
+// 구글 로그인
+export const googleProvider = new GoogleAuthProvider()

@@ -9,10 +9,9 @@ import { Timestamp, addDoc, collection } from "firebase/firestore"
 import { MATE_WRITE } from "../constants/postPathname"
 import TextEditTitle from "../components/posting/TextEditTitle"
 import usePathnameChange from "../service/useContentNameChange"
-import { db } from "../firebase/firestore"
-import { auth } from "../firebase/auth"
 import DropDownMenuArea from "../components/posting/DropDownMenuArea"
 import TitleInput from "../components/posting/TitleInput"
+import { auth, db } from "../firebase/firebase"
 
 const Write = (): JSX.Element => {
   const { pathname } = useLocation()
@@ -60,7 +59,6 @@ const Write = (): JSX.Element => {
           nickname: auth.currentUser?.displayName,
           people: selectedPeople,
           state: selectedState,
-          views: 0,
         })
         navigate(`${pathnameChange()}/${docRef.id}`)
         setContentSave(true)
