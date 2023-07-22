@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { setPersistence } from "firebase/auth"
 
 const authSlice = createSlice({
   name: "auth",
@@ -10,7 +9,6 @@ const authSlice = createSlice({
     login: (state) => {
       state.isLogin = true
       localStorage.setItem("isLogin", "true")
-      setPersistence
     },
     logout: (state) => {
       state.isLogin = false

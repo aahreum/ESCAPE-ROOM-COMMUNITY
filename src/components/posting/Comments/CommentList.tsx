@@ -1,11 +1,19 @@
-import { Timestamp, collection, deleteDoc, doc } from "firebase/firestore"
+import { Timestamp, deleteDoc, doc, updateDoc } from "firebase/firestore"
 import { styled } from "styled-components"
-import { CommentsProps } from "./Comments"
 import useGetCommentsData, { CommentDataType } from "../../../service/useGetCommentsData"
-import { db } from "../../../firebase/firebase"
+import { auth } from "../../../firebase/firebase"
+import useAccountState from "../../../service/useAccountState"
+import { useState } from "react"
+import CommentInput from "./CommentInput"
+import { CommentsProps } from "./Comments"
 
 const CommentList = ({ postId }: CommentsProps) => {
-  const { loading, commentsData } = useGetCommentsData({ postId })
+  const { isLogin } = useAccountState()
+  const { loading, commentsData, commentsRef } = useGetCommentsData({ postId })
+  const [isEditingList, setIsEditingList] = useState<boolean[]>([])
+  const [editedComment, setEditedComment] = useState("")
+  const [commentError, setCommentError] = useState(false)
+  const [isEditing, setIsEditing] = useState(false)
 
   const formattedTime = (timestamp: Timestamp) => {
     const createdTime = timestamp.toDate()
@@ -20,11 +28,41 @@ const CommentList = ({ postId }: CommentsProps) => {
     return createdTime.toLocaleString("ko-KR", options)
   }
 
-  const deleteContent = (commentId: string) => {
-    const postRef = collection(db, "mateContents")
-    const postDoc = doc(postRef, postId)
-    const commentsRef = collection(postDoc, "comments")
+  const handleDeleteComment = (commentId: string) => {
     deleteDoc(doc(commentsRef, commentId))
+  }
+
+  const handleToggleEdit = (index: number, comment: string) => {
+    setIsEditing(true)
+    setEditedComment(comment)
+    setIsEditingList((prev) => {
+      const updatedList = [...prev]
+      updatedList[index] = !updatedList[index]
+
+      for (let i = 0; i < updatedList.length; i++) {
+        if (i !== index) {
+          updatedList[i] = false
+        }
+      }
+
+      return updatedList
+    })
+  }
+
+  const handleModifyComment = async (commentId: string, index: number, comment: string) => {
+    try {
+      if (editedComment.length === 0) {
+        setCommentError(true)
+      } else {
+        await updateDoc(doc(commentsRef, commentId), {
+          comment: editedComment,
+        })
+        setEditedComment(comment)
+        handleToggleEdit(index, comment)
+      }
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   return (
@@ -33,21 +71,50 @@ const CommentList = ({ postId }: CommentsProps) => {
         <div>로딩중</div>
       ) : (
         <Container>
-          {commentsData.map((item: CommentDataType) => (
+          {commentsData.map((item: CommentDataType, index) => (
             <CommentItem key={item.id}>
               <CommentArea>
                 <CommentTopArea>
                   <Nickname>{item.nickname}</Nickname>
                   <Time>{formattedTime(item.createdTime)}</Time>
                 </CommentTopArea>
-                <CommentText>{item.comment}</CommentText>
+                {isEditingList[index] ? (
+                  <CommentInput
+                    isEditing={isEditing}
+                    comment={editedComment}
+                    setComment={setEditedComment}
+                    commentError={commentError}
+                  />
+                ) : (
+                  <CommentText>{item.comment}</CommentText>
+                )}
               </CommentArea>
-              <CommentButtonArea>
-                <button type="button">수정</button>
-                <button type="button" onClick={() => deleteContent(item.id)}>
-                  삭제
-                </button>
-              </CommentButtonArea>
+              {isLogin && auth.currentUser?.displayName === item.nickname && (
+                <CommentButtonArea>
+                  {isEditingList[index] ? (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => handleModifyComment(item.id, index, item.comment)}
+                      >
+                        완료
+                      </button>
+                      <button type="button" onClick={() => handleToggleEdit(index, item.comment)}>
+                        취소
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button type="button" onClick={() => handleToggleEdit(index, item.comment)}>
+                        수정
+                      </button>
+                      <button type="button" onClick={() => handleDeleteComment(item.id)}>
+                        삭제
+                      </button>
+                    </>
+                  )}
+                </CommentButtonArea>
+              )}
             </CommentItem>
           ))}
         </Container>

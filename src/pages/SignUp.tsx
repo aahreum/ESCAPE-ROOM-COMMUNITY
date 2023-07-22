@@ -12,9 +12,12 @@ import useAccountState from "../service/useAccountState"
 import { saveNicknameToFirestore } from "../service/saveNicknameToFirestore"
 import { collection, getDocs, query, where } from "firebase/firestore"
 import { auth, db, signUpEmail } from "../firebase/firebase"
+import { useDispatch } from "react-redux"
+import { login } from "../reducers/authSlice"
 
 const SignUp = (): JSX.Element => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const { formState, setFormState, messages, setMessages, validationState, setValidationState } =
     useAccountState()
@@ -161,11 +164,11 @@ const SignUp = (): JSX.Element => {
       if (auth.currentUser) {
         await updateProfile(auth.currentUser, { displayName: nickname })
         saveNicknameToFirestore(nickname)
+        dispatch(login())
+        navigate("/")
       } else {
         alert("회원가입에 실패하셨습니다.")
       }
-
-      navigate("/")
     } catch (err) {
       alert(`${err}: 회원가입에 실패하셨습니다.`)
     }

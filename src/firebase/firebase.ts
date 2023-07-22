@@ -4,7 +4,6 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
-  signOut,
 } from "firebase/auth"
 import { getFirestore } from "firebase/firestore"
 

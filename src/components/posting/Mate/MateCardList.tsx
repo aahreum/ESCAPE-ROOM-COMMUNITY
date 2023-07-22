@@ -5,6 +5,7 @@ import NullContent from "../NullContent"
 import SkeletonCard from "./SkeletonCard"
 import Pagination from "../../common/Pagination"
 import { useLocation } from "react-router-dom"
+import { auth } from "../../../firebase/firebase"
 
 const MateCardList = ({ limit }: { limit: number }): JSX.Element => {
   const { pathname } = useLocation()
@@ -23,18 +24,34 @@ const MateCardList = ({ limit }: { limit: number }): JSX.Element => {
         <NullContent name={"mate"} />
       ) : (
         <>
-          <CardContainer>
-            {contentData.slice(offset, offset + limit).map((item: DataType) => (
-              <MateCard
-                id={item.id}
-                key={item.id}
-                state={item.state}
-                title={item.title}
-                nickname={item.nickname}
-                people={item.people}
-                createdTime={item.createdTime}
-              />
-            ))}
+          <CardContainer className={`${pathname === "/mypage" && "mypage"}`}>
+            {pathname === "/mypage"
+              ? contentData
+                  .filter((item) => item.nickname === auth.currentUser?.displayName)
+                  .map((item: DataType) => (
+                    <MateCard
+                      id={item.id}
+                      key={item.id}
+                      state={item.state}
+                      title={item.title}
+                      nickname={item.nickname}
+                      people={item.people}
+                      createdTime={item.createdTime}
+                    />
+                  ))
+              : contentData
+                  .slice(offset, offset + limit)
+                  .map((item: DataType) => (
+                    <MateCard
+                      id={item.id}
+                      key={item.id}
+                      state={item.state}
+                      title={item.title}
+                      nickname={item.nickname}
+                      people={item.people}
+                      createdTime={item.createdTime}
+                    />
+                  ))}
           </CardContainer>
           {pathname === "/" ? null : (
             <Pagination total={contentData.length} limit={limit} page={page} setPage={setPage} />

@@ -17,13 +17,13 @@ const useGetCommentsData = ({ postId }: CommentsProps) => {
   const [commentsData, setCommentsData] = useState<CommentDataType[] | null>(null)
   const [commentSize, setCommentSize] = useState(0)
 
-  useEffect(() => {
-    const postCollectionName = () => {
-      if (includesMateSlash) return "mateContents"
-      else return "reviewContents"
-    }
+  const postCollectionName = () => {
+    if (includesMateSlash) return "mateContents"
+    else return "reviewContents"
+  }
+  const commentsRef = collection(db, postCollectionName(), postId, "comments")
 
-    const commentsRef = collection(db, postCollectionName(), postId, "comments")
+  useEffect(() => {
     const q = query(commentsRef, orderBy("createdTime", "desc"))
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -45,9 +45,9 @@ const useGetCommentsData = ({ postId }: CommentsProps) => {
     })
 
     return () => unsubscribe()
-  }, [includesMateSlash, postId])
+  }, [commentsRef])
 
-  return { loading, commentsData, commentSize }
+  return { loading, commentsData, commentSize, commentsRef }
 }
 
 export default useGetCommentsData

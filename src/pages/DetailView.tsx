@@ -5,6 +5,7 @@ import ContentView from "../components/posting/PostingView/ContentView"
 import useContentNameChange from "../service/useContentNameChange"
 import Comments from "../components/posting/Comments/Comments"
 import PostingContainer from "../components/posting/PostingContainer"
+import ContentLoading from "../components/posting/PostingView/ContentLoading"
 
 const DetailView = (): JSX.Element => {
   const { id } = useParams()
@@ -16,7 +17,7 @@ const DetailView = (): JSX.Element => {
   })
 
   if (loading) {
-    return <div>로딩중</div>
+    return <ContentLoading />
   }
 
   return (
