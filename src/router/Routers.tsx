@@ -11,6 +11,7 @@ import useAccountState from "../service/useAccountState"
 import NotFound from "../pages/NotFound"
 import DetailView from "../pages/DetailView"
 import Modify from "../pages/Modify"
+import SearchView from "../pages/SearchView"
 
 const Routers = () => {
   const { isLogin } = useAccountState()
@@ -25,6 +26,7 @@ const Routers = () => {
       <Route path="/review" element={<Review />} />
       <Route path="/mate/:id" element={<DetailView />} />
       <Route path="/review/:id" element={<DetailView />} />
+      <Route path="/search" element={<SearchView />} />
       <Route element={<PrivateRoute isLogin={isLogin} />}>
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/mate/write" element={<Write />} />

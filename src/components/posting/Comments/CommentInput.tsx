@@ -12,9 +12,15 @@ const CommentInput = ({ comment, setComment, commentError, isEditing }: CommentI
   return (
     <>
       <CommentInputEl
-        className={`${
-          (commentError && comment.length === 0 && "error") || (isEditing && "edited")
-        }`}
+        className={
+          isEditing
+            ? commentError && comment.length === 0
+              ? "edited error"
+              : "edited"
+            : commentError && comment.length === 0
+            ? "error"
+            : ""
+        }
         id="comment"
         placeholder="댓글을 작성하세요."
         onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -22,7 +28,9 @@ const CommentInput = ({ comment, setComment, commentError, isEditing }: CommentI
         }}
         value={comment}
       />
-      {commentError && comment.length === 0 && <ErrorMsg>댓글 내용을 입력해주세요.</ErrorMsg>}
+      {commentError && comment.length === 0 && (
+        <ErrorMsg className={isEditing ? "edited" : ""}>댓글 내용을 입력해주세요.</ErrorMsg>
+      )}
     </>
   )
 }
@@ -64,6 +72,10 @@ const ErrorMsg = styled.p`
   font-size: 14px;
   font-weight: 500;
   color: var(--color-negative-500);
+
+  &.edited {
+    margin-top: 8px;
+  }
 `
 
 export default CommentInput

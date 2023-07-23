@@ -4,11 +4,9 @@ import Title from "../components/common/Title"
 import { auth } from "../firebase/firebase"
 import MateCardList from "../components/posting/Mate/MateCardList"
 import ReviewList from "../components/posting/Review/ReviewList"
+import { MATE_LIMIT, REVIEW_LIMIT } from "../constants/listLimitView"
 
 const MyPage = (): JSX.Element => {
-  const mateLimit = 6
-  const ReviewLimit = 5
-
   return (
     <MainContainer>
       <Title>
@@ -16,12 +14,12 @@ const MyPage = (): JSX.Element => {
       </Title>
       <ContentArea>
         <div>
-          <ContentTitle>메이트 구하기</ContentTitle>
-          <MateCardList limit={mateLimit} />
+          <ContentTitle>메이트구하기</ContentTitle>
+          <MateCardList limit={MATE_LIMIT} />
         </div>
         <div>
           <ContentTitle>탈출후기</ContentTitle>
-          <ReviewList limit={ReviewLimit} />
+          <ReviewList limit={REVIEW_LIMIT} />
         </div>
       </ContentArea>
     </MainContainer>

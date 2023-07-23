@@ -12,6 +12,39 @@ const MateCardList = ({ limit }: { limit: number }): JSX.Element => {
   const { loading, contentData, page, setPage } = useGetPostData("mate")
   const offset = (page - 1) * limit
 
+  const cardListView = () => {
+    if (pathname === "/mypage") {
+      return contentData
+        ?.filter((item) => item.nickname === auth.currentUser?.displayName)
+        .slice(offset, offset + limit)
+        .map((item: DataType) => (
+          <MateCard
+            id={item.id}
+            key={item.id}
+            state={item.state}
+            title={item.title}
+            nickname={item.nickname}
+            people={item.people}
+            createdTime={item.createdTime}
+          />
+        ))
+    } else {
+      return contentData
+        ?.slice(offset, offset + limit)
+        .map((item: DataType) => (
+          <MateCard
+            id={item.id}
+            key={item.id}
+            state={item.state}
+            title={item.title}
+            nickname={item.nickname}
+            people={item.people}
+            createdTime={item.createdTime}
+          />
+        ))
+    }
+  }
+
   return (
     <>
       {loading ? (
@@ -24,35 +57,7 @@ const MateCardList = ({ limit }: { limit: number }): JSX.Element => {
         <NullContent name={"mate"} />
       ) : (
         <>
-          <CardContainer className={`${pathname === "/mypage" && "mypage"}`}>
-            {pathname === "/mypage"
-              ? contentData
-                  .filter((item) => item.nickname === auth.currentUser?.displayName)
-                  .map((item: DataType) => (
-                    <MateCard
-                      id={item.id}
-                      key={item.id}
-                      state={item.state}
-                      title={item.title}
-                      nickname={item.nickname}
-                      people={item.people}
-                      createdTime={item.createdTime}
-                    />
-                  ))
-              : contentData
-                  .slice(offset, offset + limit)
-                  .map((item: DataType) => (
-                    <MateCard
-                      id={item.id}
-                      key={item.id}
-                      state={item.state}
-                      title={item.title}
-                      nickname={item.nickname}
-                      people={item.people}
-                      createdTime={item.createdTime}
-                    />
-                  ))}
-          </CardContainer>
+          <CardContainer>{cardListView()}</CardContainer>
           {pathname === "/" ? null : (
             <Pagination total={contentData.length} limit={limit} page={page} setPage={setPage} />
           )}
