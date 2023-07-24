@@ -60,7 +60,7 @@ const QuillEditor = styled(({ ...props }) => <ReactQuill {...props} />).withConf
   }
 
   .ql-toolbar {
-    height: 48px;
+    padding: 12px 8px;
 
     display: flex;
     align-items: center;
@@ -69,6 +69,17 @@ const QuillEditor = styled(({ ...props }) => <ReactQuill {...props} />).withConf
     border-bottom: 1px solid var(--color-gray-300);
     border-radius: 8px 8px 0px 0px;
     background-color: var(--color-gray-600);
+
+    @media ${(props) => props.theme.tablet} {
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    > .ql-formats {
+      @media ${(props) => props.theme.tablet} {
+        margin-right: 0px;
+      }
+    }
   }
 
   .ql-header[value="3"] {

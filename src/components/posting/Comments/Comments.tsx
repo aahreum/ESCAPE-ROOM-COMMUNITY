@@ -28,6 +28,10 @@ const Container = styled.form`
   display: flex;
   flex-direction: column;
   gap: 32px;
+
+  @media ${(props) => props.theme.mobile} {
+    gap: 24px;
+  }
 `
 
 const CommentTitle = styled.label`
@@ -36,6 +40,10 @@ const CommentTitle = styled.label`
 
   > span {
     color: var(--color-primary-500);
+  }
+
+  @media ${(props) => props.theme.mobile} {
+    font-size: 18px;
   }
 `
 

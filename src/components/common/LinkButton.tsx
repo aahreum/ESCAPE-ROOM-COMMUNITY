@@ -22,8 +22,14 @@ const LinkButtonEl = styled(Link)<LinkButtonProps>`
   background-color: ${(props) => props.$bgColor || "var(--color-primary-500)"};
   ${(props) => props.$border && `border: 1px solid ${props.$color}`};
 
+  text-align: center;
   font-weight: 600;
   color: ${(props) => props.$color || "var(--color-gray-800)"};
+
+  @media ${(props) => props.theme.mobile} {
+    padding: 15px 16px;
+    font-size: 14px;
+  }
 `
 
 export default LinkButton

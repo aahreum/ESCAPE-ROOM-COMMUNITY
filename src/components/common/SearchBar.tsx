@@ -84,26 +84,48 @@ const SearchBar = () => {
 
 const SearchArea = styled.form`
   position: relative;
+
   width: 300px;
-  height: 42px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+
+  @media ${(props) => props.theme.tablet} {
+    position: absolute;
+    left: 0;
+    top: 68px;
+    width: 100%;
+  }
 `
 
 const SearchInput = styled.input`
+  width: 300px;
+  height: 48px;
+
   padding-left: 16px;
   border-radius: 8px;
   background-color: var(--color-gray-600);
+  border: none;
 
   font-size: 16px;
   color: var(--color-white);
-  border: none;
-  width: 300px;
-  height: 42px;
 
   &::placeholder {
     font-size: 16px;
     font-weight: 100;
     letter-spacing: 0px;
     color: var(--color-gray-200);
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid var(--color-primary-500);
+  }
+
+  @media ${(props) => props.theme.tablet} {
+    width: 100%;
+    border-radius: 0px;
   }
 `
 

@@ -72,6 +72,15 @@ const CardContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+
+  @media ${(props) => props.theme.desktop} {
+    display: flex;
+    flex-direction: column;
+    margin-top: 24px;
+  }
+  @media ${(props) => props.theme.tablet} {
+    margin-top: 16px;
+  }
 `
 
 export default MateCardList

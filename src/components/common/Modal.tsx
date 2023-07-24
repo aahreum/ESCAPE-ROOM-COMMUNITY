@@ -51,6 +51,7 @@ const ModalContainer = styled.div`
 `
 
 const ModalEl = styled.div`
+  margin: 0 16px;
   padding: 36px 40px;
   display: flex;
   flex-direction: column;
@@ -62,10 +63,8 @@ const ModalEl = styled.div`
 `
 
 const ModalTitle = styled.p`
-  width: 300px;
+  font-weight: 600;
   font-size: 18px;
-  font-weight: 500;
-  text-align: center;
 `
 
 const ButtonArea = styled.div`
@@ -78,7 +77,7 @@ const ButtonArea = styled.div`
 `
 
 const ModalButton = styled.button`
-  width: 140px;
+  width: 120px;
   height: 48px;
 
   border: none;

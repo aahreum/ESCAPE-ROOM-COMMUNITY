@@ -1,8 +1,8 @@
 import MainContainer from "../components/common/MainContainer"
 import { styled } from "styled-components"
 import { MATE_LIMIT, REVIEW_LIMIT } from "../constants/listLimitView"
-import MateSearchList from "../components/posting/search/MateSearchList"
-import ReviewSearchList from "../components/posting/search/ReviewSearchList"
+import MateSearchList from "../components/posting/Search/MateSearchList"
+import ReviewSearchList from "../components/posting/Search/ReviewSearchList"
 import useSearch from "../service/useSearch"
 
 const SearchView = () => {

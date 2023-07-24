@@ -15,6 +15,14 @@ const LogoNav = () => {
 const Logo = styled.h1`
   width: 124px;
   margin: 80px auto 60px;
+
+  @media ${(props) => props.theme.tablet} {
+    margin: 60px auto 32px;
+    width: 100px;
+    > a > svg {
+      width: 100px;
+    }
+  }
 `
 
 const LogoLink = styled(Link)`

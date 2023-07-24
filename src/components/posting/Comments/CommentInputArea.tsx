@@ -52,6 +52,12 @@ const CommentButton = styled.button`
   color: var(--color-white);
 
   cursor: pointer;
+
+  @media ${(props) => props.theme.mobile} {
+    margin-top: -8px;
+    padding: 13px 16px;
+    font-size: 14px;
+  }
 `
 
 export default CommentInputArea

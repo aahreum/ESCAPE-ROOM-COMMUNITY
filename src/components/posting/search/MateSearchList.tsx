@@ -3,8 +3,8 @@ import useGetPostData, { DataType } from "../../../service/useGetPostData"
 import Pagination from "../../common/Pagination"
 import MateCard from "../Mate/MateCard"
 import SkeletonCard from "../Mate/SkeletonCard"
-import EmptySearchResult from "./EmptySearchResult"
 import useSearch from "../../../service/useSearch"
+import EmptySearchResult from "./EmptySearchResult"
 
 const MateSearchList = ({ limit }: { limit: number }): JSX.Element => {
   const { loading, contentData, page, setPage } = useGetPostData("mate")
@@ -58,6 +58,15 @@ const CardContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+
+  @media ${(props) => props.theme.desktop} {
+    display: flex;
+    flex-direction: column;
+    margin-top: 24px;
+  }
+  @media ${(props) => props.theme.tablet} {
+    margin-top: 16px;
+  }
 `
 
 export default MateSearchList

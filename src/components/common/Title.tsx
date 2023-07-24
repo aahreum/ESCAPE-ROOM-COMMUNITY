@@ -15,6 +15,14 @@ const TitleEl = styled.h2<titleProps>`
   font-weight: 600;
   line-height: 44px;
   text-align: ${(props) => props.$textAlign || "left"};
+
+  @media ${(props) => props.theme.tablet} {
+    font-size: 28px;
+  }
+
+  @media ${(props) => props.theme.mobile} {
+    font-size: 22px;
+  }
 `
 
 export default Title

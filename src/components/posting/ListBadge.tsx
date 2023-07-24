@@ -24,6 +24,11 @@ const Badge = styled.span<ListBadgeProps>`
   font-weight: 600;
   color: ${(props) =>
     props.$positive ? "var(--color-positive-500)" : "var(--color-negative-500)"};
+
+  @media ${(props) => props.theme.mobile} {
+    padding: 6px;
+    font-size: 13px;
+  }
 `
 
 export default ListBadge

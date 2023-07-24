@@ -1,11 +1,8 @@
 import { Link } from "react-router-dom"
 import ListBadge from "../ListBadge"
 import { styled } from "styled-components"
-import { BiSolidUserCircle } from "react-icons/bi"
-import { FaUsers } from "react-icons/fa"
-import { IoTimeSharp } from "react-icons/io5"
 import { listDataType } from "../../../service/useGetPostData"
-import { postTimeCalculation } from "../../../service/postGetDateCounter"
+import InfoArea from "../InfoArea"
 
 const ReviewItem = ({
   state,
@@ -20,18 +17,7 @@ const ReviewItem = ({
       <ItemContainer>
         <ListBadge>{state}</ListBadge>
         <ListTitle>{title}</ListTitle>
-        <InfoItem>
-          <BiSolidUserCircle />
-          <p>{nickname}</p>
-        </InfoItem>
-        <InfoItem>
-          <FaUsers />
-          <p>{people}</p>
-        </InfoItem>
-        <InfoItem>
-          <IoTimeSharp />
-          <p>{postTimeCalculation(createdTime)}</p>
-        </InfoItem>
+        <InfoArea nickname={nickname} people={people} createdTime={createdTime} />
       </ItemContainer>
     </Link>
   )
@@ -46,19 +32,28 @@ const ItemContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 24px;
+
+  @media ${(props) => props.theme.tablet} {
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
 `
 
 const ListTitle = styled.p`
   font-size: 18px;
   font-weight: 700;
   flex: 1;
-`
 
-const InfoItem = styled.div`
-  display: flex;
-  gap: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
 
-  color: var(--color-gray-200);
+  @media ${(props) => props.theme.tablet} {
+    width: 100%;
+  }
 `
 
 export default ReviewItem

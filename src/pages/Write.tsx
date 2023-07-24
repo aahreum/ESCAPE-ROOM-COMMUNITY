@@ -1,21 +1,21 @@
 import { styled } from "styled-components"
 import { PLACEHOLDER } from "../constants/dropDownMenu"
 import PostingContainer from "../components/posting/PostingContainer"
-import { useLocation, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import TextEditor from "../components/posting/TextEditor"
 import { ChangeEvent, useEffect, useState } from "react"
 import Modal from "../components/common/Modal"
 import { Timestamp, addDoc, collection } from "firebase/firestore"
-import { MATE_WRITE } from "../constants/postPathname"
 import TextEditTitle from "../components/posting/TextEditTitle"
 import usePathnameChange from "../service/useContentNameChange"
 import DropDownMenuArea from "../components/posting/DropDownMenuArea"
 import TitleInput from "../components/posting/TitleInput"
 import { auth, db } from "../firebase/firebase"
+import usePathname from "../service/usePathname"
 
 const Write = (): JSX.Element => {
-  const { pathname } = useLocation()
   const navigate = useNavigate()
+  const { includesMateSlash } = usePathname()
   const [contentTitle, setContentTitle] = useState("")
   const [content, setContent] = useState("")
   const [selectedPeople, setSelectedPeople] = useState("")
@@ -36,7 +36,7 @@ const Write = (): JSX.Element => {
   }, [contentSave])
 
   const collectionName = () => {
-    if (pathname === MATE_WRITE) return "mateContents"
+    if (includesMateSlash) return "mateContents"
     else return "reviewContents"
   }
 
@@ -127,6 +127,11 @@ const TextSaveButton = styled.button`
   color: var(--color-gray-800);
 
   cursor: pointer;
+
+  @media ${(props) => props.theme.mobile} {
+    padding: 13px 16px;
+    font-size: 14px;
+  }
 `
 
 export default Write

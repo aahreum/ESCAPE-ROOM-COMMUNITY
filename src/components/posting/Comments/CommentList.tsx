@@ -136,6 +136,10 @@ const CommentItem = styled.div`
 
   background-color: var(--color-gray-600);
   border-top: 1px solid var(--color-gray-300);
+
+  @media ${(props) => props.theme.mobile} {
+    padding: 24px 16px;
+  }
 `
 
 const CommentArea = styled.div`
@@ -146,6 +150,11 @@ const CommentTopArea = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
+
+  @media ${(props) => props.theme.mobile} {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `
 
 const CommentButtonArea = styled.div`
@@ -164,6 +173,10 @@ const CommentButtonArea = styled.div`
     color: var(--color-white);
 
     cursor: pointer;
+
+    @media ${(props) => props.theme.mobile} {
+      padding: 6px 8px;
+    }
   }
 `
 

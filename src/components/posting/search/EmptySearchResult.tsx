@@ -26,7 +26,15 @@ const Empty = styled.div`
   font-size: 20px;
 
   > svg {
-    font-size: 40px;
+    font-size: 32px;
+  }
+
+  @media ${(props) => props.theme.desktop} {
+    margin-top: 24px;
+  }
+  @media ${(props) => props.theme.tablet} {
+    margin-top: 16px;
+    font-size: 16px;
   }
 `
 export default EmptySearchResult

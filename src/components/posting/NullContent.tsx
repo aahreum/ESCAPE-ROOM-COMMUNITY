@@ -34,10 +34,22 @@ const Container = styled.div`
 
   border-radius: 8px;
   background-color: var(--color-gray-600);
+
+  @media ${(props) => props.theme.desktop} {
+    margin-top: 24px;
+  }
+  @media ${(props) => props.theme.tablet} {
+    margin-top: 16px;
+    gap: 16px;
+  }
 `
 
 const Text = styled.p`
   font-size: 22px;
+
+  @media ${(props) => props.theme.tablet} {
+    font-size: 16px;
+  }
 `
 
 export default NullContent

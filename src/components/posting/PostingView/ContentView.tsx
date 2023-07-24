@@ -103,6 +103,10 @@ const TitleArea = styled.div`
 const ContentTitle = styled.h2`
   font-size: 28px;
   font-weight: 700;
+
+  @media ${(props) => props.theme.mobile} {
+    font-size: 22px;
+  }
 `
 const InfoArea = styled.div`
   display: flex;
@@ -116,10 +120,18 @@ const InfoItem = styled.div`
   & > svg {
     color: var(--color-gray-200);
   }
+
+  @media ${(props) => props.theme.mobile} {
+    font-size: 14px;
+  }
 `
 
 const InfoDesc = styled.p`
   color: var(--color-gray-200);
+
+  @media ${(props) => props.theme.mobile} {
+    font-size: 14px;
+  }
 `
 
 const ContentArea = styled.div`
@@ -137,15 +149,27 @@ const ContentArea = styled.div`
 
     & > h3 {
       font-size: 24px;
+
+      @media ${(props) => props.theme.mobile} {
+        font-size: 22px;
+      }
     }
 
     & > h4 {
       font-size: 20px;
+
+      @media ${(props) => props.theme.mobile} {
+        font-size: 18px;
+      }
     }
 
     & > p {
       font-size: 16px;
     }
+  }
+
+  @media ${(props) => props.theme.mobile} {
+    padding: 20px 16px;
   }
 `
 
@@ -171,6 +195,11 @@ const DeleteButton = styled.button`
   color: var(--color-negative-500);
 
   cursor: pointer;
+
+  @media ${(props) => props.theme.mobile} {
+    padding: 0 16px;
+    font-size: 14px;
+  }
 `
 
 export default ContentView

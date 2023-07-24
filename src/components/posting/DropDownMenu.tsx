@@ -80,6 +80,7 @@ const DropDownMenu = ({
 
 const DropDownContainer = styled.div`
   position: relative;
+  display: flex;
 `
 
 const DropDown = styled.button`
@@ -102,6 +103,10 @@ const DropDown = styled.button`
     height: 28px;
     color: var(--color-gray-300);
   }
+
+  @media ${(props) => props.theme.tablet} {
+    flex: 1;
+  }
 `
 
 const SelectedText = styled.p`
@@ -116,17 +121,19 @@ const SelectedText = styled.p`
 
 const MenuList = styled.div`
   position: absolute;
+  top: 50px;
   z-index: 1000;
+  width: 100%;
 
   margin-top: 8px;
   padding: 8px 0;
-  width: 230px;
 
   display: flex;
   flex-direction: column;
 
   border-radius: 8px;
-  background-color: var(--color-gray-600);
+  background-color: var(--color-gray-500);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
 `
 
 const MenuItem = styled.button`
@@ -137,7 +144,7 @@ const MenuItem = styled.button`
   align-items: center;
 
   border: none;
-  background-color: var(--color-gray-600);
+  background-color: var(--color-gray-500);
 
   font-size: 16px;
   color: var(--color-white);

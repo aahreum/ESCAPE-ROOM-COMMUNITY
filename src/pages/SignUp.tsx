@@ -264,6 +264,7 @@ const SignUp = (): JSX.Element => {
     </>
   )
 }
+
 const Form = styled.form`
   margin-top: 40px;
   display: flex;
@@ -298,7 +299,6 @@ const InputDesc = styled.p`
 `
 
 const InputArea = styled.div`
-  width: 420px;
   height: 50px;
   display: flex;
   gap: 12px;

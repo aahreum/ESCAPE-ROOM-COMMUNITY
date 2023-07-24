@@ -1,11 +1,8 @@
 import { styled } from "styled-components"
 import ListBadge from "../ListBadge"
 import { Link } from "react-router-dom"
-import { BiSolidUserCircle } from "react-icons/bi"
-import { FaUsers } from "react-icons/fa"
-import { IoTimeSharp } from "react-icons/io5"
-import { postTimeCalculation } from "../../../service/postGetDateCounter"
 import { listDataType } from "../../../service/useGetPostData"
+import InfoArea from "../InfoArea"
 
 const MateCard = ({
   state,
@@ -20,20 +17,7 @@ const MateCard = ({
       <CardContainer>
         <ListBadge>{state}</ListBadge>
         <ListTitle>{title}</ListTitle>
-        <InfoArea>
-          <div>
-            <BiSolidUserCircle />
-            <p>{nickname}</p>
-          </div>
-          <div>
-            <FaUsers />
-            <p>{people}</p>
-          </div>
-          <div>
-            <IoTimeSharp />
-            <p>{postTimeCalculation(createdTime)}</p>
-          </div>
-        </InfoArea>
+        <InfoArea nickname={nickname} people={people} createdTime={createdTime} />
       </CardContainer>
     </Link>
   )
@@ -49,6 +33,10 @@ const CardContainer = styled.div`
   gap: 12px;
 
   cursor: pointer;
+
+  @media ${(props) => props.theme.tablet} {
+    padding: 28px 24px;
+  }
 `
 
 const ListTitle = styled.p`
@@ -60,21 +48,6 @@ const ListTitle = styled.p`
   white-space: nowrap;
   text-overflow: ellipsis;
   word-break: break-all;
-`
-
-const InfoArea = styled.div`
-  display: flex;
-  gap: 16px;
-  color: var(--color-gray-200);
-
-  > div {
-    display: flex;
-    gap: 6px;
-
-    &:last-child {
-      margin-left: auto;
-    }
-  }
 `
 
 export default MateCard

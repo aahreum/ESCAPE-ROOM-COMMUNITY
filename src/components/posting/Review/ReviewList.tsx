@@ -49,6 +49,13 @@ const ListContainer = styled.div`
   margin-top: 32px;
   display: flex;
   flex-direction: column;
+
+  @media ${(props) => props.theme.desktop} {
+    margin-top: 24px;
+  }
+  @media ${(props) => props.theme.tablet} {
+    margin-top: 16px;
+  }
 `
 
 export default ReviewList

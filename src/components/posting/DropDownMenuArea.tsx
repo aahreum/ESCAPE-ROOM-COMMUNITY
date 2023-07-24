@@ -64,6 +64,11 @@ const Container = styled.form`
   margin-top: 40px;
   display: flex;
   gap: 20px;
+
+  @media ${(props) => props.theme.tablet} {
+    margin-top: 20px;
+    flex-direction: column;
+  }
 `
 
 export default DropDownMenuArea

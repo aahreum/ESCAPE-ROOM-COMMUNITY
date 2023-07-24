@@ -1,23 +1,37 @@
 import { styled } from "styled-components"
-import { Link } from "react-router-dom"
+import { Link, LinkProps } from "react-router-dom"
 import { ReactComponent as LogoIcon } from "../../assets/logo.svg"
-
+import { MdClose, MdMenu } from "react-icons/md"
 import { logout } from "../../reducers/authSlice"
 import { useDispatch } from "react-redux"
 import useAccountState from "../../service/useAccountState"
-import LinkButton from "./LinkButton"
 import { auth } from "../../firebase/firebase"
 import { signOut } from "firebase/auth"
 import SearchBar from "./SearchBar"
+import { useEffect, useState } from "react"
 
 const PageNav = (): JSX.Element => {
   const dispatch = useDispatch()
   const { isLogin } = useAccountState()
+  const [isOpen, setIsOpen] = useState(false)
+
+  const handleToggleNav = () => {
+    setIsOpen(!isOpen)
+  }
 
   const handleLogout = async () => {
     await signOut(auth)
     dispatch(logout())
   }
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.cssText = `overflow: hidden`
+      return () => {
+        document.body.style.cssText = `overflow: auto`
+      }
+    }
+  }, [isOpen])
 
   return (
     <NavContainer>
@@ -27,7 +41,7 @@ const PageNav = (): JSX.Element => {
             <LogoIcon />
           </LogoLink>
         </Logo>
-        <MenuList>
+        <MenuList className={isOpen ? "is-open" : ""}>
           <MenuItem>
             <Link to="/mate">메이트구하기</Link>
           </MenuItem>
@@ -38,14 +52,22 @@ const PageNav = (): JSX.Element => {
         <SearchBar />
         {isLogin ? (
           <>
-            <LogoutButton type="button" onClick={handleLogout}>
+            <LogoutButton className={isOpen ? "is-open" : ""} type="button" onClick={handleLogout}>
               로그아웃
             </LogoutButton>
-            <LinkButton to="/mypage">마이페이지</LinkButton>
+            <LoginMyPageButton className={isOpen ? "is-open" : ""} to="/mypage">
+              마이페이지
+            </LoginMyPageButton>
           </>
         ) : (
-          <LinkButton to="/login">로그인</LinkButton>
+          <LoginMyPageButton className={isOpen ? "is-open" : ""} to="/login">
+            로그인
+          </LoginMyPageButton>
         )}
+        <MobileMenuButton type="button" onClick={handleToggleNav}>
+          {isOpen ? <MdClose /> : <MdMenu />}
+        </MobileMenuButton>
+        {isOpen && <MobileMenuConatiner />}
       </Nav>
     </NavContainer>
   )
@@ -81,6 +103,21 @@ const MenuList = styled.ul`
   margin-left: 36px;
   display: flex;
   gap: 16px;
+
+  @media ${(props) => props.theme.tablet} {
+    display: none;
+    &.is-open {
+      position: absolute;
+      left: 24px;
+      top: 80px;
+      margin-left: 0px;
+
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      z-index: 1001;
+    }
+  }
 `
 
 const MenuItem = styled.li`
@@ -104,6 +141,87 @@ const LogoutButton = styled.button`
   color: var(--color-white);
 
   cursor: pointer;
+
+  @media ${(props) => props.theme.tablet} {
+    display: none;
+    &.is-open {
+      margin-right: 0;
+      position: absolute;
+      left: 24px;
+      bottom: 110px;
+      z-index: 1001;
+
+      display: block;
+      width: calc(100% - 48px);
+      height: 48px;
+
+      border: 1px solid var(--color-white);
+      border-radius: 8px;
+    }
+  }
+`
+
+const MobileMenuButton = styled.button`
+  display: none;
+  z-index: 1001;
+
+  @media ${(props) => props.theme.tablet} {
+    width: 24px;
+    height: 48px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    background-color: transparent;
+    border: none;
+
+    cursor: pointer:
+  }
+  @media ${(props) => props.theme.tablet} {
+    > svg {
+      display: block;
+      color: var(--color-white);
+      font-size: 24px;
+    }
+}
+`
+
+const MobileMenuConatiner = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: var(--color-gray-900);
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+`
+
+const LoginMyPageButton = styled(Link)<LinkProps>`
+  padding: 15px 24px;
+
+  border-radius: 8px;
+  background-color: var(--color-primary-500);
+
+  text-align: center;
+  font-weight: 600;
+  color: var(--color-gray-800);
+
+  @media ${(props) => props.theme.tablet} {
+    display: none;
+    &.is-open {
+      position: absolute;
+      left: 24px;
+      bottom: 48px;
+      z-index: 1001;
+
+      display: block;
+      width: calc(100% - 48px);
+    }
+  }
 `
 
 export default PageNav
