@@ -10,7 +10,10 @@ const ReviewSearchList = ({ limit }: { limit: number }): JSX.Element => {
   const { loading, contentData, page, setPage } = useGetPostData("review")
   const offset = (page - 1) * limit
   const { searchQuery } = useSearch()
-  const searchResults = contentData?.filter((item) => item.title.includes(searchQuery))
+  const searchResults = contentData?.filter((item) =>
+    item.title.toLowerCase().includes(searchQuery.toLowerCase()),
+  )
+
   return (
     <>
       {loading ? (

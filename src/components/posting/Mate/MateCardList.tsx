@@ -11,12 +11,12 @@ const MateCardList = ({ limit }: { limit: number }): JSX.Element => {
   const { pathname } = useLocation()
   const { loading, contentData, page, setPage } = useGetPostData("mate")
   const offset = (page - 1) * limit
+  const userData = contentData?.filter((item) => item.nickname === auth.currentUser?.displayName)
 
   const cardListView = () => {
     if (pathname === "/mypage") {
-      return contentData
-        ?.filter((item) => item.nickname === auth.currentUser?.displayName)
-        .slice(offset, offset + limit)
+      return userData
+        ?.slice(offset, offset + limit)
         .map((item: DataType) => (
           <MateCard
             id={item.id}
@@ -53,7 +53,7 @@ const MateCardList = ({ limit }: { limit: number }): JSX.Element => {
             <SkeletonCard key={index} />
           ))}
         </CardContainer>
-      ) : contentData === null ? (
+      ) : contentData === null || userData?.length === 0 ? (
         <NullContent name={"mate"} />
       ) : (
         <>
