@@ -1,8 +1,8 @@
 import { styled } from "styled-components"
-import useGetPostData, { DataType } from "../../../service/useGetPostData"
+import useGetPostData from "../../../service/useGetPostData"
 import MateCard from "./MateCard"
-import NullContent from "../NullContent"
 import SkeletonCard from "./SkeletonCard"
+import NullContent from "../NullContent"
 import Pagination from "../../common/Pagination"
 import { useLocation } from "react-router-dom"
 import { auth } from "../../../firebase/firebase"
@@ -14,34 +14,30 @@ const MateCardList = ({ limit }: { limit: number }): JSX.Element => {
   const userData = contentData?.filter((item) => item.nickname === auth.currentUser?.displayName)
 
   const cardListView = () => {
-    if (pathname === "/mypage") {
-      return userData
-        ?.slice(offset, offset + limit)
-        .map((item: DataType) => (
-          <MateCard
-            id={item.id}
-            key={item.id}
-            state={item.state}
-            title={item.title}
-            nickname={item.nickname}
-            people={item.people}
-            createdTime={item.createdTime}
-          />
-        ))
-    } else {
-      return contentData
-        ?.slice(offset, offset + limit)
-        .map((item: DataType) => (
-          <MateCard
-            id={item.id}
-            key={item.id}
-            state={item.state}
-            title={item.title}
-            nickname={item.nickname}
-            people={item.people}
-            createdTime={item.createdTime}
-          />
-        ))
+    const data = pathname === "/mypage" ? userData : contentData
+    if (data === null || (Array.isArray(data) && data.length === 0)) {
+      return <NullContent name="review" />
+    } else if (data !== undefined) {
+      return (
+        <>
+          <CardContainer>
+            {data?.slice(offset, offset + limit).map((item) => (
+              <MateCard
+                id={item.id}
+                key={item.id}
+                state={item.state}
+                title={item.title}
+                nickname={item.nickname}
+                people={item.people}
+                createdTime={item.createdTime}
+              />
+            ))}
+          </CardContainer>
+          {pathname !== "/" && (
+            <Pagination total={data.length} limit={limit} page={page} setPage={setPage} />
+          )}
+        </>
+      )
     }
   }
 
@@ -53,15 +49,8 @@ const MateCardList = ({ limit }: { limit: number }): JSX.Element => {
             <SkeletonCard key={index} />
           ))}
         </CardContainer>
-      ) : contentData === null || userData?.length === 0 ? (
-        <NullContent name={"mate"} />
       ) : (
-        <>
-          <CardContainer>{cardListView()}</CardContainer>
-          {pathname === "/" ? null : (
-            <Pagination total={contentData.length} limit={limit} page={page} setPage={setPage} />
-          )}
-        </>
+        <>{cardListView()}</>
       )}
     </>
   )
