@@ -1,15 +1,15 @@
 import { styled } from "styled-components"
-import useAccountState from "../../service/useAccountState"
-import Title from "../common/Title"
-import LinkButton from "../common/LinkButton"
-import { DataType } from "../../service/useGetPostData"
-import usePathname from "../../service/usePathname"
+import { DataType } from "../../../service/useGetPostData"
+import usePathname from "../../../service/usePathname"
+import useAccountState from "../../../service/useAccountState"
+import Title from "../../common/Title"
+import LinkButton from "../../common/LinkButton"
 
-interface TitleContainerProps {
+interface TitleAreaProps {
   content: DataType[] | null
 }
 
-const TitleContainer = ({ content }: TitleContainerProps): JSX.Element => {
+const TitleArea = ({ content }: TitleAreaProps): JSX.Element => {
   const { includesMate } = usePathname()
   const { isLogin } = useAccountState()
 
@@ -19,7 +19,7 @@ const TitleContainer = ({ content }: TitleContainerProps): JSX.Element => {
   }
 
   return (
-    <TitleContainerEl>
+    <TitleAreaEl>
       <Title>{renderTitle()}</Title>
       {content === null ||
         (isLogin && (
@@ -30,14 +30,14 @@ const TitleContainer = ({ content }: TitleContainerProps): JSX.Element => {
             글쓰기
           </LinkButton>
         ))}
-    </TitleContainerEl>
+    </TitleAreaEl>
   )
 }
 
-const TitleContainerEl = styled.div`
+const TitleAreaEl = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
 `
 
-export default TitleContainer
+export default TitleArea

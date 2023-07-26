@@ -4,8 +4,8 @@ import NotFound from "./NotFound"
 import ContentView from "../components/posting/PostingView/ContentView"
 import useContentNameChange from "../service/useContentNameChange"
 import Comments from "../components/posting/Comments/Comments"
-import PostingContainer from "../components/posting/PostingContainer"
 import ContentLoading from "../components/posting/PostingView/ContentLoading"
+import PostingContainer from "../components/posting/PostingCommon/PostingContainer"
 
 const DetailView = (): JSX.Element => {
   const { id } = useParams()

@@ -1,7 +1,8 @@
 import MainContainer from "../components/common/MainContainer"
-import TitleContainer from "../components/posting/TitleContainer"
 import useGetPostData from "../service/useGetPostData"
 import MateCardList from "../components/posting/Mate/MateCardList"
+import TitleArea from "../components/posting/PostingCommon/TitleArea"
+
 
 const Mate = (): JSX.Element => {
   const { contentData } = useGetPostData("mate")
@@ -9,7 +10,7 @@ const Mate = (): JSX.Element => {
 
   return (
     <MainContainer>
-      <TitleContainer content={contentData} />
+      <TitleArea content={contentData} />
       <MateCardList limit={limit} />
     </MainContainer>
   )

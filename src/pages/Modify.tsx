@@ -1,17 +1,17 @@
 import { ChangeEvent, useEffect, useState } from "react"
-import DropDownMenuArea from "../components/posting/DropDownMenuArea"
-import PostingContainer from "../components/posting/PostingContainer"
-import TextEditTitle from "../components/posting/TextEditTitle"
-import TextEditor from "../components/posting/TextEditor"
 import useContentNameChange from "../service/useContentNameChange"
 import useGetPostData from "../service/useGetPostData"
 import { styled } from "styled-components"
 import { useNavigate, useParams } from "react-router-dom"
-import TitleInput from "../components/posting/TitleInput"
 import { collection, doc, updateDoc } from "firebase/firestore"
 import { db } from "../firebase/firebase"
 import usePathname from "../service/usePathname"
 import usePathnameChange from "../service/useContentNameChange"
+import PostingContainer from "../components/posting/PostingCommon/PostingContainer"
+import DropDownMenuArea from "../components/posting/PostingCommon/DropDownMenuArea"
+import TitleInput from "../components/posting/PostingCommon/TitleInput"
+import TextEditor from "../components/posting/PostingCommon/TextEditor"
+import WriteTitle from "../components/posting/PostingCommon/WriteTitle"
 
 const Modify = () => {
   const { id } = useParams()
@@ -72,7 +72,7 @@ const Modify = () => {
 
   return (
     <PostingContainer>
-      <TextEditTitle />
+      <WriteTitle />
       <TextEditArea>
         <DropDownMenuArea
           selectedPeople={editedSelectedPeople}

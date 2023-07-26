@@ -1,10 +1,10 @@
 import { styled } from "styled-components"
-import useGetPostData, { DataType } from "../../../service/useGetPostData"
-import SkeletonItem from "../Review/SkeletonItem"
+import useGetPostData, { DataType } from "../../service/useGetPostData"
+import SkeletonItem from "../posting/Review/SkeletonItem"
 import EmptySearchResult from "./EmptySearchResult"
-import ReviewItem from "../Review/ReviewItem"
-import Pagination from "../../common/Pagination"
-import useSearch from "../../../service/useSearch"
+import ReviewItem from "../posting/Review/ReviewItem"
+import Pagination from "../common/Pagination"
+import useSearch from "../../service/useSearch"
 
 const ReviewSearchList = ({ limit }: { limit: number }): JSX.Element => {
   const { loading, contentData, page, setPage } = useGetPostData("review")

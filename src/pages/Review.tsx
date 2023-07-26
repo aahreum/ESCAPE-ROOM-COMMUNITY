@@ -1,7 +1,7 @@
 import useGetPostData from "../service/useGetPostData"
 import MainContainer from "../components/common/MainContainer"
-import TitleContainer from "../components/posting/TitleContainer"
 import ReviewList from "../components/posting/Review/ReviewList"
+import TitleArea from "../components/posting/PostingCommon/TitleArea"
 
 const Review = (): JSX.Element => {
   const { contentData } = useGetPostData("review")
@@ -9,7 +9,7 @@ const Review = (): JSX.Element => {
 
   return (
     <MainContainer>
-      <TitleContainer content={contentData} />
+      <TitleArea content={contentData} />
       <ReviewList limit={limit} />
     </MainContainer>
   )

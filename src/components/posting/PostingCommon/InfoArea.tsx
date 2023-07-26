@@ -2,8 +2,8 @@ import { styled } from "styled-components"
 import { BiSolidUserCircle } from "react-icons/bi"
 import { FaUsers } from "react-icons/fa"
 import { IoTimeSharp } from "react-icons/io5"
-import { postTimeCalculation } from "../../service/postGetDateCounter"
 import { Timestamp } from "firebase/firestore"
+import { postTimeCalculation } from "../../../service/postGetDateCounter"
 
 interface InfoAreaProps {
   nickname: string

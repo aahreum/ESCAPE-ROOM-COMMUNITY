@@ -1,17 +1,19 @@
 import { styled } from "styled-components"
 import { PLACEHOLDER } from "../constants/dropDownMenu"
-import PostingContainer from "../components/posting/PostingContainer"
-import { useNavigate } from "react-router-dom"
-import TextEditor from "../components/posting/TextEditor"
+import { useLocation, useNavigate } from "react-router-dom"
 import { ChangeEvent, useEffect, useState } from "react"
 import Modal from "../components/common/Modal"
 import { Timestamp, addDoc, collection } from "firebase/firestore"
-import TextEditTitle from "../components/posting/TextEditTitle"
 import usePathnameChange from "../service/useContentNameChange"
-import DropDownMenuArea from "../components/posting/DropDownMenuArea"
-import TitleInput from "../components/posting/TitleInput"
+
 import { auth, db } from "../firebase/firebase"
 import usePathname from "../service/usePathname"
+import Title from "../components/common/Title"
+import PostingContainer from "../components/posting/PostingCommon/PostingContainer"
+import DropDownMenuArea from "../components/posting/PostingCommon/DropDownMenuArea"
+import TitleInput from "../components/posting/PostingCommon/TitleInput"
+import TextEditor from "../components/posting/PostingCommon/TextEditor"
+import WriteTitle from "../components/posting/PostingCommon/WriteTitle"
 
 const Write = (): JSX.Element => {
   const navigate = useNavigate()
@@ -86,7 +88,7 @@ const Write = (): JSX.Element => {
         />
       )}
       <PostingContainer>
-        <TextEditTitle />
+        <WriteTitle />
         <TextEditArea>
           <DropDownMenuArea
             selectedPeople={selectedPeople}

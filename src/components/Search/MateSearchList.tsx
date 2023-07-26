@@ -1,9 +1,9 @@
 import { styled } from "styled-components"
-import useGetPostData, { DataType } from "../../../service/useGetPostData"
-import Pagination from "../../common/Pagination"
-import MateCard from "../Mate/MateCard"
-import SkeletonCard from "../Mate/SkeletonCard"
-import useSearch from "../../../service/useSearch"
+import useGetPostData, { DataType } from "../../service/useGetPostData"
+import Pagination from "../common/Pagination"
+import MateCard from "../posting/Mate/MateCard"
+import SkeletonCard from "../posting/Mate/SkeletonCard"
+import useSearch from "../../service/useSearch"
 import EmptySearchResult from "./EmptySearchResult"
 
 const MateSearchList = ({ limit }: { limit: number }): JSX.Element => {

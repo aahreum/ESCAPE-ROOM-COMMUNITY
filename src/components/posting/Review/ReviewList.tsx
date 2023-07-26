@@ -2,10 +2,10 @@ import { styled } from "styled-components"
 import useGetPostData from "../../../service/useGetPostData"
 import ReviewItem from "./ReviewItem"
 import SkeletonItem from "./SkeletonItem"
-import NullContent from "../NullContent"
 import Pagination from "../../common/Pagination"
 import { useLocation } from "react-router-dom"
 import { auth } from "../../../firebase/firebase"
+import NullContent from "../PostingCommon/NullContent"
 
 const ReviewList = ({ limit }: { limit: number }): JSX.Element => {
   const { pathname } = useLocation()

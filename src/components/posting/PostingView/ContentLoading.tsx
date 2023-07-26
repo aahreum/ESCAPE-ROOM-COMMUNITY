@@ -1,5 +1,5 @@
 import { styled } from "styled-components"
-import PostingContainer from "../PostingContainer"
+import PostingContainer from "../PostingCommon/PostingContainer"
 
 const ContentLoading = () => {
   return (

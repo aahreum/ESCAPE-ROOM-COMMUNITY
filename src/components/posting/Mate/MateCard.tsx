@@ -1,8 +1,9 @@
 import { styled } from "styled-components"
-import ListBadge from "../ListBadge"
 import { Link } from "react-router-dom"
 import { listDataType } from "../../../service/useGetPostData"
-import InfoArea from "../InfoArea"
+import ListBadge from "../PostingCommon/ListBadge"
+import InfoArea from "../PostingCommon/InfoArea"
+
 
 const MateCard = ({
   state,

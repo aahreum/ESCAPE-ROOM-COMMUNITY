@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom"
-import ListBadge from "../ListBadge"
 import { styled } from "styled-components"
 import { listDataType } from "../../../service/useGetPostData"
-import InfoArea from "../InfoArea"
+import InfoArea from "../PostingCommon/InfoArea"
+import ListBadge from "../PostingCommon/ListBadge"
+
 
 const ReviewItem = ({
   state,

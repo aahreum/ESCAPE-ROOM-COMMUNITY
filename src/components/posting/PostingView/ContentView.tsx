@@ -1,5 +1,4 @@
 import { styled } from "styled-components"
-import ListBadge from "../ListBadge"
 import { postTimeCalculation } from "../../../service/postGetDateCounter"
 import { FaUsers } from "react-icons/fa"
 import { IoTimeSharp } from "react-icons/io5"
@@ -14,6 +13,7 @@ import useContentNameChange from "../../../service/useContentNameChange"
 import useAccountState from "../../../service/useAccountState"
 import usePathname from "../../../service/usePathname"
 import { auth, db } from "../../../firebase/firebase"
+import ListBadge from "../PostingCommon/ListBadge"
 
 const ContentView = ({ title, content, state, nickname, people, createdTime, id }: DataType) => {
   const navigate = useNavigate()

@@ -4,9 +4,9 @@ import {
   NUMBER_OF_PEOPLE,
   PLACEHOLDER,
   RECRUITMENT_STATUS,
-} from "../../constants/dropDownMenu"
+} from "../../../constants/dropDownMenu"
 import { styled } from "styled-components"
-import usePathname from "../../service/usePathname"
+import usePathname from "../../../service/usePathname"
 
 interface DropDownMenuAreaProps {
   selectedPeople?: string
