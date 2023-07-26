@@ -14,7 +14,7 @@
 > 개발 기간: 2023.07.06 ~ 2023.07.26
 
 
-노션 [바로가기 >]()  
+노션 [바로가기 >](https://ahahahahreum.notion.site/36657abdeda44778a75f022cd705dd27?pvs=4)  
 방탈출 커뮤니티 [사용해보기 >](https://escape-room-dcc1b.web.app/)  
 시연 영상 [확인하기 >](https://www.youtube.com/watch?v=J_TSjYNpNDg)  
 
@@ -64,16 +64,16 @@ $ npm run dev
   
   
 ## ⚡️ 주요 기능
-### firebase auth를 활용한 회원가입
+### 1️⃣ firebase auth를 활용한 회원가입
 + 이메일 로그인, 회원가입  
     - 회원가입 및 로그인 시 정보 유효성 검사 진행  
 + 구글 로그인  
 
-### firebase firestore를 활용한 데이터 관리
+### 2️⃣ firebase firestore를 활용한 데이터 관리
 + firestore 사용해서 CRUD 기능 구현
     - 댓글, 게시글 작성 수정 삭제
 
-### 기타
+### 3️⃣ 기타
 + 게시글 제목 검색 기능
 + 회원/비회원 구분
     - 회원: 모든 권한
