@@ -20,7 +20,7 @@
 
   
   
-## 🔧 Installation
+## 🔧  Installation
   
 - Node.js 18.16.0
 - Npm 9.7.1
@@ -35,7 +35,7 @@ $ npm run dev
 
   
   
-## 🔎 Skill
+## 🔎  Skill
   
 ### 개발 
 ![React](https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=FFFFFF)
@@ -51,7 +51,19 @@ $ npm run dev
 
   
 ## 🧑‍💻 화면 구조
+|**메인페이지**|**마이페이지**|
+|:---:|:---:|
+|<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fm5Wti%2Fbtso1tRZDwR%2FSrYMZ7XyU7fDKo3EmpVSn0%2Fimg.png" alt="메인페이지"/>|<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbzJ8Lr%2Fbtso6MCMJLL%2FtRCBitbXcRbbG1lM1bJWP0%2Fimg.png" alt="마이페이지"/>|
+|**메이트구하기**|**탈출후기**|
+|:---:|:---:|
+|<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbZSpUB%2FbtsoZZX7bca%2Fxd8TnKp7EOqhDMCzRFXvC1%2Fimg.png" alt="메이트구하기"/>|<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb4uPzm%2Fbtso1u4pgSD%2FV5CEncOmZCMpbAcJgzNifk%2Fimg.png" alt="탈출후기"/>|
+|**게시글작성**|**게시글**|
+|:---:|:---:|
+|<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb3Lf7i%2Fbtso0s0bUPN%2FMaA6jZNZIYx92aLrYRKvuK%2Fimg.png" alt="게시글작성"/>|<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FsEK0t%2Fbtso6Sv9pGJ%2Frm1RGrsO711Wqb5fFkwxR1%2Fimg.png" alt="게시글"/>|
+|**404페이지**|**검색**|
+|:---:|:---:|
+|<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fcc9QRC%2Fbtso0slvlA8%2FOxsEZ0kL4MVhBPZssb0ZO0%2Fimg.png" alt="404"/>|<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F6cnKC%2Fbtso1tEo2aB%2F1b1FkLrQ5DrFa9chaDUxkk%2Fimg.png" alt="검색"/>|
   
   
 ## ⚡️ 주요 기능
-###
+### 
