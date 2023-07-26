@@ -3,7 +3,7 @@
   
 <p align="center"><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcmZRK3%2FbtsoZMK1po6%2FyCfVos9vHjGqiLTzTEkPIk%2Fimg.png" alt="로고 이미지" width="400px">
 <br>
-<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgjbae1212%2Fhit-counter&count_bg=%23FFA80F&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
+<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Faahreum%2FESCAPE-ROOM-COMMUNITY&count_bg=%23FFA110&title_bg=%23555555&icon=tinder.svg&icon_color=%23EAAA48&title=hits&edge_flat=false"/></a>
 </p>
 
   
@@ -19,6 +19,7 @@
 시연 영상 [확인하기 >](https://www.youtube.com/watch?v=J_TSjYNpNDg)
 
   
+  
 ## 🔧 Installation
   
 - Node.js 18.16.0
@@ -32,6 +33,7 @@ $ npm install
 $ npm run dev
 ```
 
+  
   
 ## 🔎 Skill
   
