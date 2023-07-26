@@ -1,16 +1,17 @@
 import { styled } from "styled-components"
 import MainContainer from "../components/common/MainContainer"
 import Title from "../components/common/Title"
-import { auth } from "../firebase/firebase"
 import MateCardList from "../components/posting/Mate/MateCardList"
 import ReviewList from "../components/posting/Review/ReviewList"
 import { MATE_LIMIT, REVIEW_LIMIT } from "../constants/listLimitView"
 
 const MyPage = (): JSX.Element => {
+  const storedNickname = localStorage.getItem("nickname")
+
   return (
     <MainContainer>
       <Title>
-        {auth.currentUser?.displayName} <Light>님이 작성한 글 보기</Light>
+        {storedNickname} <Light>님이 작성한 글 보기</Light>
       </Title>
       <ContentArea>
         <div>

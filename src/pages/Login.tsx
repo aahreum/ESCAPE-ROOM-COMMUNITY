@@ -79,7 +79,7 @@ const Login = (): JSX.Element => {
   const handleUserLogin: userLoginType = async (email, password) => {
     try {
       await loginEmail(email, password)
-      dispatch(login())
+      dispatch(login({ isLogin: true, nickname: auth.currentUser?.displayName }))
 
       setFormState((prev) => ({
         ...prev,
@@ -131,7 +131,7 @@ const Login = (): JSX.Element => {
   const handleUserGoogleLogin = async () => {
     try {
       await signInWithPopup(auth, googleProvider)
-      dispatch(login())
+      dispatch(login({ isLogin: true, nickname: auth.currentUser?.displayName }))
       navigate("/")
     } catch (err) {
       console.error(err + ": Error google login")
