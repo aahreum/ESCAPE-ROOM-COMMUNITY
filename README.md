@@ -45,6 +45,7 @@ $ npm run dev
 
   
 ### 기타
+![Firebase](https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=FFFFFF)
 ![Github](https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=FFFFFF)
 ![Git](https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=FFFFFF)
 ![VisualStudioCode](https://img.shields.io/badge/visualstudiocode-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=FFFFFF)
@@ -63,4 +64,17 @@ $ npm run dev
   
   
 ## ⚡️ 주요 기능
-### 
+### firebase auth를 활용한 회원가입
++ 이메일 로그인, 회원가입  
+    - 회원가입 및 로그인 시 정보 유효성 검사 진행  
++ 구글 로그인  
+
+### firebase firestore를 활용한 데이터 관리
++ firestore 사용해서 CRUD 기능 구현
+    - 댓글, 게시글 작성 수정 삭제
+
+### 기타
++ 게시글 제목 검색 기능
++ 회원/비회원 구분
+    - 회원: 모든 권한
+    - 비회원: 게시물 읽기만 가능
