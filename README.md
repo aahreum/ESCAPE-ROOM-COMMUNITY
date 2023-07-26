@@ -39,7 +39,7 @@ $ npm run dev
   
 ### 개발 
 ![React](https://img.shields.io/badge/react-444444?style=for-the-badge&logo=react)
-![styledcomponents](https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents)
+![styledcomponents](https://img.shields.io/badge/styledcomponents-FFFFFF?style=for-the-badge&logo=styledcomponents)
 ![React](https://img.shields.io/badge/react-444444?style=for-the-badge&logo=react)
 
   
