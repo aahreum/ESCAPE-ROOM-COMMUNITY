@@ -38,11 +38,17 @@ $ npm run dev
 ## 🔎 Skill
   
 ### 개발 
-![React](https://img.shields.io/badge/react-444444?style=for-the-badge&logo=react)
-![styledcomponents](https://img.shields.io/badge/styledcomponents-FFFFFF?style=for-the-badge&logo=styledcomponents)
-![React](https://img.shields.io/badge/react-444444?style=for-the-badge&logo=react)
+![React](https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=FFFFFF)
+![Typescript](https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=FFFFFF)
+![Styledcomponents](https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=FFFFFF)
+![Redux](https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=FFFFFF)
 
   
+### 기타
+![Github](https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=FFFFFF)
+![Git](https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=FFFFFF)
+![VisualStudioCode](https://img.shields.io/badge/visualstudiocode-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=FFFFFF)
+
   
 ## 🧑‍💻 화면 구조
   
