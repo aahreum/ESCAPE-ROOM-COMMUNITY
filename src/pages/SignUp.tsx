@@ -164,7 +164,7 @@ const SignUp = (): JSX.Element => {
       if (auth.currentUser) {
         await updateProfile(auth.currentUser, { displayName: nickname })
         saveNicknameToFirestore(nickname)
-        dispatch(login())
+        dispatch(login({ isLogin: true, nickname: nickname }))
         navigate("/")
       } else {
         alert("회원가입에 실패하셨습니다.")
