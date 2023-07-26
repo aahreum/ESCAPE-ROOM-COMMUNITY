@@ -7,7 +7,7 @@
 </p>
 
   
-## 😀 Introduction
+## 😀 소개
 
 > 제로베이스 프론트엔드 스쿨에서 진행한 개인프로젝트 작업물입니다.  
 > 방탈출을 주제로 커뮤니티를 제작했습니다.  
@@ -16,7 +16,7 @@
 
 노션 [바로가기 >]()  
 방탈출 커뮤니티 [사용해보기 >](https://escape-room-dcc1b.web.app/)  
-시연 영상 [확인하기 >](https://www.youtube.com/watch?v=J_TSjYNpNDg)
+시연 영상 [확인하기 >](https://www.youtube.com/watch?v=J_TSjYNpNDg)  
 
   
   
@@ -26,7 +26,7 @@
 - Npm 9.7.1
 
   
-```
+``` zsh
 $ git clone https://github.com/aahreum/ESCAPE-ROOM-COMMUNITY.git
 $ cd ESCAPE-ROOM-COMMUNITY
 $ npm install
@@ -37,7 +37,15 @@ $ npm run dev
   
 ## 🔎 Skill
   
-### Front-end  
+### 개발 
+![React](https://img.shields.io/badge/react-444444?style=for-the-badge&logo=react)
+![styledcomponents](https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents)
+![React](https://img.shields.io/badge/react-444444?style=for-the-badge&logo=react)
 
-
-
+  
+  
+## 🧑‍💻 화면 구조
+  
+  
+## ⚡️ 주요 기능
+###
