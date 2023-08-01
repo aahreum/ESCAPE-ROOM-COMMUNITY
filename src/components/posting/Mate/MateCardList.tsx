@@ -16,7 +16,7 @@ const MateCardList = ({ limit }: { limit: number }): JSX.Element => {
   const cardListView = () => {
     const data = pathname === "/mypage" ? userData : contentData
     if (data === null || (Array.isArray(data) && data.length === 0)) {
-      return <NullContent name="review" />
+      return <NullContent name="mate" />
     } else if (data !== undefined) {
       return (
         <>
