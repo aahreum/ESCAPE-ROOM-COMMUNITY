@@ -6,12 +6,12 @@ import PageNavWithHide from "./router/PageNavWithHide"
 import PageFooter from "./components/common/PageFooter"
 import { Provider } from "react-redux"
 import store from "./reducers/store"
-import theme from "./styles/theme"
+import responsiveSize from "./styles/size"
 
 const App = (): JSX.Element => {
   return (
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={responsiveSize}>
         <BrowserRouter>
           <GlobalStyles />
           <Wrap>
