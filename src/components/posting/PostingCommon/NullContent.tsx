@@ -14,7 +14,7 @@ const NullContent = ({ name }: { name: string }): JSX.Element => {
     <Container>
       <Text>아직 작성한 글이 없어요</Text>
       {isLogin && (
-        <LinkButton $bgColor={`var(--color-white)`} to={GoToLink()}>
+        <LinkButton $bgColor={`var(--color-gray-100)`} to={GoToLink()}>
           글쓰기
         </LinkButton>
       )}

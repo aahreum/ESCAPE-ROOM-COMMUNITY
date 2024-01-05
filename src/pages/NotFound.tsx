@@ -35,7 +35,7 @@ const GotoMainButton = styled(Link)`
   background-color: var(--color-primary-500);
   border-radius: 8px;
   font-weight: 600;
-  color: var(--color-gray-800);
+  color: #1c1d1e;
 `
 
 export default NotFound

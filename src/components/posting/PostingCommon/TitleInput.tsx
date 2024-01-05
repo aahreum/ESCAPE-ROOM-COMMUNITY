@@ -20,7 +20,7 @@ const TitleInputEl = styled.input`
   background-color: var(--color-gray-600);
 
   font-size: 16px;
-  color: var(--color-white);
+  color: var(--color-gray-100);
 
   border: none;
   border-radius: 8px;

@@ -24,7 +24,7 @@ const TitleArea = ({ content }: TitleAreaProps): JSX.Element => {
       {content === null ||
         (isLogin && (
           <LinkButton
-            $bgColor={"var(--color-white)"}
+            $bgColor={"var(--color-gray-100)"}
             to={includesMate ? "/mate/write" : "/review/write"}
           >
             글쓰기

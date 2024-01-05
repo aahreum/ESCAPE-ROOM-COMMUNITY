@@ -77,7 +77,7 @@ const ContentView = ({ title, content, state, nickname, people, createdTime, id 
               <LinkButton
                 to={`${pathnameChange()}/${id}/modify`}
                 $border
-                $color="var(--color-white)"
+                $color="var(--color-gray-100)"
                 $bgColor="var(--color-gray-600)"
               >
                 수정하기

@@ -33,7 +33,7 @@ const InputEl = styled.input`
   border-radius: 8px;
   background-color: var(--color-gray-600);
   font-size: 16px;
-  color: var(--color-white);
+  color: var(--color-gray-100);
 
   &:focus {
     outline: none;

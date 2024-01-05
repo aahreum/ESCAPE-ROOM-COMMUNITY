@@ -24,7 +24,7 @@ const LinkButtonEl = styled(Link)<LinkButtonProps>`
 
   text-align: center;
   font-weight: 600;
-  color: ${(props) => props.$color || "var(--color-gray-800)"};
+  color: ${(props) => props.$color || "#1c1d1e"};
 
   @media ${(props) => props.theme.mobile} {
     padding: 15px 16px;

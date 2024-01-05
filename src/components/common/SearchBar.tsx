@@ -109,7 +109,7 @@ const SearchInput = styled.input`
   border: none;
 
   font-size: 16px;
-  color: var(--color-white);
+  color: var(--color-gray-100);
 
   &::placeholder {
     font-size: 16px;
@@ -141,7 +141,7 @@ const SearchInputButton = styled.button`
 
   border: none;
   background-color: transparent;
-  color: var(--color-white);
+  color: var(--color-gray-100);
   cursor: pointer;
 
   > svg {
@@ -165,7 +165,7 @@ const Search = styled.button`
 
   font-size: 16px;
   font-weight: 500;
-  color: var(--color-white);
+  color: var(--color-gray-100);
 
   cursor: pointer;
 

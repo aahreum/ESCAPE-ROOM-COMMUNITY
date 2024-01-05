@@ -289,7 +289,7 @@ const InputTitleArea = styled.div`
 const InputTitle = styled.p`
   font-size: 18px;
   font-weight: 500;
-  color: var(--color-white);
+  color: var(--color-gray-100);
 `
 
 const InputDesc = styled.p`
@@ -307,11 +307,11 @@ const InputArea = styled.div`
 const InputButton = styled.button`
   padding: 16px 14px;
   border-radius: 8px;
-  border: 1px solid var(--color-white);
+  border: 1px solid var(--color-gray-100);
   background-color: var(--color-gray-600);
   font-size: 14px;
   font-weight: 600;
-  color: var(--color-white);
+  color: var(--color-gray-100);
   cursor: pointer;
 
   &:disabled {

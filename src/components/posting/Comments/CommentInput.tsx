@@ -45,7 +45,7 @@ const CommentInputEl = styled.textarea`
   background-color: var(--color-gray-600);
 
   font-size: 16px;
-  color: var(--color-white);
+  color: var(--color-gray-100);
 
   &::placeholder {
     color: var(--color-gray-200);

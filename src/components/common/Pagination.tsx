@@ -85,7 +85,7 @@ const PaginationButton = styled.button`
   background-color: transparent;
 
   font-size: 16px;
-  color: var(--color-white);
+  color: var(--color-gray-100);
 
   cursor: pointer;
 

@@ -38,7 +38,7 @@ const QuillEditor = styled(({ ...props }) => <ReactQuill {...props} />).withConf
   shouldForwardProp: (prop) => prop !== "excludeProp",
 })`
   .ql-picker-label {
-    color: var(--color-white);
+    color: var(--color-gray-100);
     &:hover {
       color: var(--color-primary-500);
     }
@@ -56,7 +56,7 @@ const QuillEditor = styled(({ ...props }) => <ReactQuill {...props} />).withConf
 
   .ql-stroke,
   .ql-fill {
-    stroke: var(--color-white);
+    stroke: var(--color-gray-100);
   }
 
   .ql-toolbar {
@@ -85,7 +85,7 @@ const QuillEditor = styled(({ ...props }) => <ReactQuill {...props} />).withConf
   .ql-header[value="3"] {
     &::after {
       content: "H1";
-      color: var(--color-white);
+      color: var(--color-gray-100);
       font-weight: 700;
     }
   }
@@ -93,7 +93,7 @@ const QuillEditor = styled(({ ...props }) => <ReactQuill {...props} />).withConf
   .ql-header[value="4"] {
     &::after {
       content: "H2";
-      color: var(--color-white);
+      color: var(--color-gray-100);
       font-weight: 700;
     }
   }

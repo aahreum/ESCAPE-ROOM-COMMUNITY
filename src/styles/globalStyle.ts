@@ -20,7 +20,26 @@ const GlobalStyles = createGlobalStyle`
   // 컬러
   :root {
     --color-primary-500: #FBD617;
-    --color-white: #FFF;
+    --color-positive-500: #009027;
+    --color-positive-100: #D6F2DC;
+    --color-negative-500: #FF1E13;
+    --color-negative-100: #FFE9EE;
+    --color-opacity: rgba(0,0,0,0.8);
+  }
+
+  [data-theme="light"] {
+    --color-gray-100: #2a323b;
+    --color-gray-200: #3a4552;
+    --color-gray-300: #666f7b;
+    --color-gray-500: #c6c8cd;
+    --color-gray-600: #e9ebee;
+    --color-gray-700: #f7f8f9;
+    --color-gray-800: #fefefe;
+    --color-gray-900: #fff;
+  }
+
+  [data-theme="dark"] {
+    --color-gray-100: #fefefe;
     --color-gray-200: #C5C9CE;
     --color-gray-300: #7E7E7E;
     --color-gray-500: #484848;
@@ -28,11 +47,6 @@ const GlobalStyles = createGlobalStyle`
     --color-gray-700: #272727;
     --color-gray-800: #1C1D1E;
     --color-gray-900: #111112;
-    --color-positive-500: #009027;
-    --color-positive-100: #A9FFC0;
-    --color-negative-500: #FF1E13;
-    --color-negative-100: #FFE9E8;
-    --color-opacity: rgba(0,0,0,0.8);
   }
 
   // 폰트
@@ -41,7 +55,7 @@ const GlobalStyles = createGlobalStyle`
     font-style: normal;
     font-weight: 100;
     src: local('SUIT Thin'),
-    url(${SUITThinWoff2}) format('woff2');
+    url(${SUITThinWoff2}) format('woff2')
     url(${SUITThinWoff}) format('woff');
   }
 
@@ -50,7 +64,7 @@ const GlobalStyles = createGlobalStyle`
     font-style: normal;
     font-weight: 300;
     src: local('SUIT Light'),
-    url(${SUITLightWoff2}) format('woff2');
+    url(${SUITLightWoff2}) format('woff2')
     url(${SUITLightWoff}) format('woff');
   }
 
@@ -59,8 +73,8 @@ const GlobalStyles = createGlobalStyle`
     font-style: normal;
     font-weight: 400;
     src: local('SUIT Regular'),
-    url(${SUITRegularWoff2}) format('woff2');
-    url(${SUITRegularWoff}) format('woff'),
+    url(${SUITRegularWoff2}) format('woff2')
+    url(${SUITRegularWoff}) format('woff');
   }
 
   @font-face {
@@ -68,8 +82,8 @@ const GlobalStyles = createGlobalStyle`
     font-style: normal;
     font-weight: 500;
     src: local('SUIT Medium'),
-    url(${SUITMediumWoff2}) format('woff2');
-    url(${SUITMediumWoff}) format('woff'),
+    url(${SUITMediumWoff2}) format('woff2')
+    url(${SUITMediumWoff}) format('woff');
   }
 
   @font-face {
@@ -77,7 +91,7 @@ const GlobalStyles = createGlobalStyle`
     font-style: normal;
     font-weight: 600;
     src: local('SUIT SemiBold'),
-    url(${SUITSemiBoldWoff2}) format('woff2');
+    url(${SUITSemiBoldWoff2}) format('woff2')
     url(${SUITSemiBoldWoff}) format('woff');
   }
 
@@ -86,7 +100,7 @@ const GlobalStyles = createGlobalStyle`
     font-style: normal;
     font-weight: 700;
     src: local('SUIT Bold'),
-    url(${SUITBoldWoff2}) format('woff2');
+    url(${SUITBoldWoff2}) format('woff2')
     url(${SUITBoldWoff}) format('woff');
   }
 
@@ -98,7 +112,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     font-family: "SUIT", sans-serif;
     background-color: var(--color-gray-800);
-    color: var(--color-white);
+    color: var(--color-gray-100);
   }
 
   button {

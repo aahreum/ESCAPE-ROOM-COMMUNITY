@@ -111,7 +111,7 @@ const DropDown = styled.button`
 
 const SelectedText = styled.p`
   font-size: 16px;
-  color: var(--color-white);
+  color: var(--color-gray-100);
 
   &.not-selected {
     font-weight: 300;
@@ -147,7 +147,7 @@ const MenuItem = styled.button`
   background-color: var(--color-gray-500);
 
   font-size: 16px;
-  color: var(--color-white);
+  color: var(--color-gray-100);
 
   &:hover {
     font-weight: 600;

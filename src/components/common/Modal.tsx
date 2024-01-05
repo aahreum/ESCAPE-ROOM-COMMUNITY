@@ -72,7 +72,7 @@ const ButtonArea = styled.div`
   gap: 16px;
 
   & > :first-child {
-    background-color: var(--color-white);
+    background-color: var(--color-gray-100);
   }
 `
 
@@ -86,7 +86,7 @@ const ModalButton = styled.button`
 
   font-size: 16px;
   font-weight: 600;
-  color: var(--color-gray-800);
+  color: #1c1d1e;
 
   cursor: pointer;
 `

@@ -43,13 +43,13 @@ const CommentButton = styled.button`
   margin-left: auto;
   padding: 12px 24px;
 
-  border: 1px solid var(--color-white);
+  border: 1px solid var(--color-gray-100);
   border-radius: 8px;
   background-color: var(--color-gray-600);
 
   font-size: 16px;
   font-weight: 600;
-  color: var(--color-white);
+  color: var(--color-gray-100);
 
   cursor: pointer;
 

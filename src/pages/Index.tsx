@@ -53,7 +53,7 @@ const ViewMoreButton = styled(Link)`
   justify-content: center;
 
   background-color: var(--color-gray-600);
-  border: 1px solid var(--color-white);
+  border: 1px solid var(--color-gray-100);
   border-radius: 8px;
 `
 

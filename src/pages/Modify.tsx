@@ -109,7 +109,7 @@ const ModifyButton = styled.button`
 
   font-weight: 600;
   font-size: 16px;
-  color: var(--color-gray-800);
+  color: #1c1d1e;
 
   cursor: pointer;
 `

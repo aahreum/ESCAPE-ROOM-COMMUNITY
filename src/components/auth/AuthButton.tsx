@@ -23,7 +23,7 @@ const AuthButtonEl = styled.button`
   background-color: var(--color-primary-500);
   font-size: 18px;
   font-weight: 700;
-  color: var(--color-gray-800);
+  color: #1c1d1e;
   cursor: pointer;
 
   &:disabled {

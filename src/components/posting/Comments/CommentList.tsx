@@ -165,12 +165,12 @@ const CommentButtonArea = styled.div`
     padding: 8px 16px;
 
     background-color: var(--color-gray-600);
-    border: 1px solid var(--color-white);
+    border: 1px solid var(--color-gray-100);
     border-radius: 8px;
 
     font-size: 14px;
     font-weight: 500;
-    color: var(--color-white);
+    color: var(--color-gray-100);
 
     cursor: pointer;
 
