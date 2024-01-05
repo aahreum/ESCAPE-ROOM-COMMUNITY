@@ -93,7 +93,7 @@ const PaginationButton = styled.button`
     color: var(--color-primary-500);
   }
 
-  &: disabled > svg {
+  &:disabled > svg {
     color: var(--color-gray-600);
   }
 
