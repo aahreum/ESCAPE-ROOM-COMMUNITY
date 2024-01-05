@@ -12,6 +12,7 @@ const ContainerEl = styled.div`
 
   border-radius: 20px;
   background-color: var(--color-gray-900);
+  border: 1px solid var(--color-gray-600);
 
   @media ${(props) => props.theme.tablet} {
     padding: 40px 24px 60px;
