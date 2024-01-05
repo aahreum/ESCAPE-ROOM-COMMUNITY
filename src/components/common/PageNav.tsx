@@ -1,7 +1,8 @@
 import { styled } from "styled-components"
 import { Link, LinkProps } from "react-router-dom"
 import { ReactComponent as LogoIcon } from "../../assets/logo.svg"
-import { MdClose, MdMenu } from "react-icons/md"
+import { MdClose, MdMenu, MdSunny } from "react-icons/md"
+import { IoMoon } from "react-icons/io5"
 import { logout } from "../../reducers/authSlice"
 import { useDispatch } from "react-redux"
 import useAccountState from "../../service/useAccountState"
@@ -9,11 +10,13 @@ import { auth } from "../../firebase/firebase"
 import { signOut } from "firebase/auth"
 import SearchBar from "./SearchBar"
 import { useEffect, useState } from "react"
+import useThemeChange from "../../service/useThemeChange"
 
 const PageNav = (): JSX.Element => {
   const dispatch = useDispatch()
   const { isLogin } = useAccountState()
   const [isOpen, setIsOpen] = useState(false)
+  const { isDark, handleToggleClick } = useThemeChange()
 
   const handleToggleNav = () => {
     setIsOpen(!isOpen)
@@ -50,6 +53,9 @@ const PageNav = (): JSX.Element => {
           </MenuItem>
         </MenuList>
         <SearchBar />
+        <ThemeButton type="button" onClick={handleToggleClick}>
+          {isDark ? <IoMoon /> : <MdSunny />}
+        </ThemeButton>
         {isLogin ? (
           <>
             <LogoutButton className={isOpen ? "is-open" : ""} type="button" onClick={handleLogout}>
@@ -120,6 +126,24 @@ const MenuList = styled.ul`
   }
 `
 
+const ThemeButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  color: var(--color-gray-100);
+  width: 32px;
+  height: 32px;
+  margin-right: 16px;
+  cursor: pointer;
+
+  & > svg {
+    width: 24px;
+    height: 24px;
+  }
+`
+
 const MenuItem = styled.li`
   font-weight: 500;
   margin: 4px;
@@ -138,7 +162,7 @@ const LogoutButton = styled.button`
 
   font-size: 16px;
   font-weight: 500;
-  color: var(--color-white);
+  color: var(--color-gray-100);
 
   cursor: pointer;
 
@@ -155,7 +179,7 @@ const LogoutButton = styled.button`
       width: calc(100% - 48px);
       height: 48px;
 
-      border: 1px solid var(--color-white);
+      border: 1px solid var(--color-gray-100);
       border-radius: 8px;
     }
   }
@@ -168,23 +192,21 @@ const MobileMenuButton = styled.button`
   @media ${(props) => props.theme.tablet} {
     width: 24px;
     height: 48px;
-    
     display: flex;
     align-items: center;
     justify-content: center;
-    
     background-color: transparent;
     border: none;
 
-    cursor: pointer:
+    cursor: pointer;
   }
   @media ${(props) => props.theme.tablet} {
     > svg {
       display: block;
-      color: var(--color-white);
+      color: var(--color-gray-100);
       font-size: 24px;
     }
-}
+  }
 `
 
 const MobileMenuConatiner = styled.div`
@@ -208,7 +230,7 @@ const LoginMyPageButton = styled(Link)<LinkProps>`
 
   text-align: center;
   font-weight: 600;
-  color: var(--color-gray-800);
+  color: #1c1d1e;
 
   @media ${(props) => props.theme.tablet} {
     display: none;
