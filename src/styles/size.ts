@@ -4,10 +4,10 @@ const size = {
   mobile: "480px",
 }
 
-const theme = {
+const responsiveSize = {
   desktop: `(max-width: ${size.desktop})`,
   tablet: `(max-width: ${size.tablet})`,
   mobile: `(max-width: ${size.mobile})`,
 }
 
-export default theme
+export default responsiveSize
