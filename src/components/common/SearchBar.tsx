@@ -126,6 +126,11 @@ const SearchInput = styled.input`
   @media ${(props) => props.theme.tablet} {
     width: 100%;
     border-radius: 0px;
+    font-size: 14px;
+
+    &::placeholder {
+      font-size: 14px;
+    }
   }
 `
 
