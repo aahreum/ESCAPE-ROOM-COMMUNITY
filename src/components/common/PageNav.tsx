@@ -46,10 +46,14 @@ const PageNav = (): JSX.Element => {
         </Logo>
         <MenuList className={isOpen ? "is-open" : ""}>
           <MenuItem>
-            <Link to="/mate">메이트구하기</Link>
+            <Link onClick={handleToggleNav} to="/mate">
+              메이트구하기
+            </Link>
           </MenuItem>
           <MenuItem>
-            <Link to="/review">탈출후기</Link>
+            <Link onClick={handleToggleNav} to="/review">
+              탈출후기
+            </Link>
           </MenuItem>
         </MenuList>
         <SearchBar />
