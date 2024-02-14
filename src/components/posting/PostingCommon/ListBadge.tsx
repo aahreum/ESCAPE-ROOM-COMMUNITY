@@ -26,8 +26,8 @@ const Badge = styled.span<ListBadgeProps>`
     props.$positive ? "var(--color-positive-500)" : "var(--color-negative-500)"};
 
   @media ${(props) => props.theme.mobile} {
-    padding: 6px;
-    font-size: 13px;
+    padding: 4px;
+    font-size: 12px;
   }
 `
 

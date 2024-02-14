@@ -21,7 +21,7 @@ const TitleEl = styled.h2<titleProps>`
   }
 
   @media ${(props) => props.theme.mobile} {
-    font-size: 22px;
+    font-size: 20px;
   }
 `
 

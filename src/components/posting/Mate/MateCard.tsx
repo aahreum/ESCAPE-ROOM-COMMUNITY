@@ -4,7 +4,6 @@ import { listDataType } from "../../../service/useGetPostData"
 import ListBadge from "../PostingCommon/ListBadge"
 import InfoArea from "../PostingCommon/InfoArea"
 
-
 const MateCard = ({
   state,
   title,
@@ -49,6 +48,10 @@ const ListTitle = styled.p`
   white-space: nowrap;
   text-overflow: ellipsis;
   word-break: break-all;
+
+  @media ${(props) => props.theme.tablet} {
+    font-size: 16px;
+  }
 `
 
 export default MateCard
