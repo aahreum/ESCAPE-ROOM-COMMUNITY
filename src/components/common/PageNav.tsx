@@ -19,7 +19,11 @@ const PageNav = (): JSX.Element => {
   const { isDark, handleToggleClick } = useThemeChange()
 
   const handleToggleNav = () => {
-    setIsOpen(!isOpen)
+    if (window.innerWidth >= 769) {
+      return
+    } else {
+      setIsOpen(!isOpen)
+    }
   }
 
   const handleLogout = async () => {
